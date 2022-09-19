@@ -23,6 +23,14 @@ void mainMemoryPrint(){
   
 }
 
+void BufferPrint(){
+  for(int i=0;i<40;i++){
+    cout<<buffer[i]<<" ";
+  }
+  cout<<endl;
+  
+}
+
 void load(){
     
     mainMemory.assign(10,vector<char> (40,'#'));
@@ -36,11 +44,40 @@ void load(){
     
 }
 
+void input(){
+    bool prog=false;
+    bool data=false;
+    string text;
+    ifstream myFile("input.txt");
+    while(getline(myFile,text)){
+        cout<<text<<endl;
+        
+        string str=text.substr(0,4);
+        //cout<<str<<endl;
+        if(str=="$AMJ"){
+            prog=true;
+        }
+        else if(str=="$DTA"){
+            prog=false;
+            data=true;
+        }
+        else if(str=="$END"){
+            
+        }
+       
+        
+    }
+    
+    
+}
+
 
 int main()
 {
     load();
     input();
+    BufferPrint();
+    mainMemoryPrint();
 
     return 0;
 }
