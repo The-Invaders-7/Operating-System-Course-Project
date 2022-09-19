@@ -3,15 +3,19 @@
 #include<fstream>
 using namespace std;
 
-vector<vector<char>> mainMemory(10,vector<char> (40));
+vector<vector<char>> mainMemory(100,vector<char> (4));
 vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
 vector<char> buffer(40);
 bool toggle=false;
-string contain;
 
-
+void bufferPrint(){
+    for(int i=0;i<40;i++){
+        cout<<buffer[i];
+    }
+    cout<<endl;
+}
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
         if(i%10==0){
@@ -24,18 +28,19 @@ void mainMemoryPrint(){
         cout<<endl;
     }
 }
-
-void BufferPrint(){
-  for(int i=0;i<40;i++){
-    cout<<buffer[i]<<" ";
-  }
-  cout<<endl;
-  
+void execute(){
+    
+    mainMemoryPrint();
+    while(true){
+    
+    }
+    bufferPrint();
 }
+
 
 void load(){
     
-    mainMemory.assign(10,vector<char> (40,'#'));
+    mainMemory.assign(100,vector<char> (4,'#'));
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
@@ -47,30 +52,47 @@ void load(){
 }
 
 void input(){
+    
     bool prog=false;
     bool data=false;
     string text;
-    ifstream myFile("input.txt");
-    while(getline(myFile,text)){
+    ifstream myFile("Input.txt");
+    while (getline(myFile,text)){
         cout<<text<<endl;
-        
         string str=text.substr(0,4);
-        //cout<<str<<endl;
         if(str=="$AMJ"){
             prog=true;
         }
         else if(str=="$DTA"){
             prog=false;
             data=true;
+            
         }
         else if(str=="$END"){
             
         }
-       
-        
+        else{
+            if(prog){
+                int j=0;
+                int i=0;
+                int a=0;
+                while(a<text.size()){
+                    mainMemory[i][j++]=text[a++];
+                    if(j==4){
+                        j=0;
+                        i++;
+                    }
+                }
+            }
+            else if(data){
+                for(int i=0;i<text.size();i++){
+                    buffer[i]=text[i];
+                }
+                execute();
+            }
+             
+        }
     }
-    
-    
 }
 
 
@@ -78,8 +100,6 @@ int main()
 {
     load();
     input();
-    BufferPrint();
-    mainMemoryPrint();
 
     return 0;
 }
