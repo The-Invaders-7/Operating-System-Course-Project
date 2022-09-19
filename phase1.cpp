@@ -144,6 +144,9 @@ void input(){
                 int a=0;
                 while(a<text.size()){
                     mainMemory[i][j++]=text[a++];
+                    if(text[a-1]=='H'){
+                        j+=3;
+                    }
                     if(j==4){
                         j=0;
                         i++;
