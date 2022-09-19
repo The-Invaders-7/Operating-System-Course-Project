@@ -11,7 +11,15 @@ vector<string> buffer(10);
 bool toggle=false;
 int bufferData=0;
 
-
+void printPartMemory(int start,int end){
+    for(int i=start;i<=end;i++){
+        cout<<"Memory Location "<<(i+1)<<": ";
+        for(int j=0;j<4;j++){
+            cout<<mainMemory[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
 void readData(int memoryLocation){
     
     int a=0;
