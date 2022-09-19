@@ -11,6 +11,28 @@ vector<string> buffer(10);
 bool toggle=false;
 int bufferData=0;
 
+
+void mainMemoryPrint(){
+    for(int i=0;i<100;i++){
+        if(i%10==0){
+            cout<<"Block "<<(i/10+1)<<": "<<endl;
+        }
+        cout<<"Memory Location "<<(i+1)<<": ";
+        for(int j=0;j<4;j++){
+            cout<<mainMemory[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+void load(){
+    mainMemory.assign(100,vector<char> (4,'#'));
+    IR.assign(4,'#');
+    IC.assign(2,0);
+    reg.assign(4,'#');
+    buffer.assign(10,"#");
+    toggle=false;
+    mainMemoryPrint();
+}
 void printPartMemory(int start,int end){
     for(int i=start;i<=end;i++){
         cout<<"Memory Location "<<(i+1)<<": ";
@@ -38,13 +60,16 @@ void readData(int memoryLocation){
     int a=0;
     int i=memoryLocation;
     int j=0;
-    while(a<40 && buffer[a]!='#'){
-        mainMemory[i][j++]=buffer[a++];
+    string data=buffer[bufferData++];
+    while(a<40 && a<data.size()){
+        mainMemory[i][j++]=data[a++];
         if(j==4){
             j=0;
             i++;
         }
     }
+    increment();
+    printPartMemory(memoryLocation,i);
     
 }
 void writeData(int memoryLocation){
@@ -91,7 +116,7 @@ void branch(int memoryLocation){
     }
 }
 void halt(){
-    
+    load();
 }
 void bufferPrint(){
     for(int i=0;i<40;i++){
@@ -99,24 +124,12 @@ void bufferPrint(){
     }
     cout<<endl;
 }
-void mainMemoryPrint(){
-    for(int i=0;i<100;i++){
-        if(i%10==0){
-            cout<<"Block "<<(i/10+1)<<": "<<endl;
-        }
-        cout<<"Memory Location "<<(i+1)<<": ";
-        for(int j=0;j<4;j++){
-            cout<<mainMemory[i][j]<<" ";
-        }
-        cout<<endl;
-    }
-}
 void execute(){
     
     mainMemoryPrint();
     while(true){
-        
         IR=mainMemory[IC[0]*10+IC[1]];
+        cout<<"Instruction: ";
         for(int i=0;i<4;i++){
             cout<<IR[i];
         }
@@ -124,8 +137,6 @@ void execute(){
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
         if(IR[0]=='G' && IR[1]=='D'){
             readData(memoryLocation);
-            mainMemoryPrint();
-            break;
         }
         else if(IR[0]=='P' && IR[1]=='D'){
             writeData(memoryLocation);
@@ -144,27 +155,14 @@ void execute(){
         }
         else{
             halt();
+            break;
         }
         
-        
-        break;
     }
     //bufferPrint();
 }
 
 
-void load(){
-    
-    mainMemory.assign(100,vector<char> (4,'#'));
-    IR.assign(4,'#');
-    IC.assign(2,0);
-    reg.assign(4,'#');
-    buffer.assign(10,"#");
-    toggle=false;
-    mainMemoryPrint();
-
-    
-}
 
 void input(){
     
@@ -184,7 +182,8 @@ void input(){
             
         }
         else if(str=="$END"){
-            
+            bufferData=0;
+            execute();
         }
         else{
             if(prog){
