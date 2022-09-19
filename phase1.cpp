@@ -73,10 +73,22 @@ void storeReg(int memoryLocation){
     increment();
 }
 void compare(int memoryLocation){
-    
+    increment();
+    for(int i=0;i<4;i++){
+        if(reg[i]!=mainMemory[memoryLocation][i]){
+            return;
+        }
+    }
+    toggle=true;
 }
 void branch(int memoryLocation){
-    
+    if(toggle){
+        IC[0]=memoryLocation/10;
+        IC[1]=memoryLocation%10;
+    }
+    else{
+        increment();   
+    }
 }
 void halt(){
     
