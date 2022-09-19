@@ -7,43 +7,9 @@ vector<vector<char>> mainMemory(100,vector<char> (4));
 vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
-vector<string> buffer(10);
+vector<char> buffer(40);
 bool toggle=false;
-int bufferData=0;
 
-
-void readData(int memoryLocation){
-    
-    int a=0;
-    int i=memoryLocation;
-    int j=0;
-    while(a<40 && buffer[a]!='#'){
-        mainMemory[i][j++]=buffer[a++];
-        if(j==4){
-            j=0;
-            i++;
-        }
-    }
-    
-}
-void writeData(int memoryLocation){
-    
-}
-void loadReg(int memoryLocation){
-    
-}
-void storeReg(int memoryLocation){
-    
-}
-void compare(int memoryLocation){
-    
-}
-void branch(int memoryLocation){
-    
-}
-void halt(){
-    
-}
 void bufferPrint(){
     for(int i=0;i<40;i++){
         cout<<buffer[i];
@@ -66,41 +32,9 @@ void execute(){
     
     mainMemoryPrint();
     while(true){
-        
-        IR=mainMemory[IC[0]*10+IC[1]];
-        for(int i=0;i<4;i++){
-            cout<<IR[i];
-        }
-        cout<<endl;
-        int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
-        if(IR[0]=='G' && IR[1]=='D'){
-            readData(memoryLocation);
-            mainMemoryPrint();
-            break;
-        }
-        else if(IR[0]=='P' && IR[1]=='D'){
-            writeData(memoryLocation);
-        }
-        else if(IR[0]=='L' && IR[1]=='R'){
-            loadReg(memoryLocation);
-        }
-        else if(IR[0]=='S' && IR[1]=='R'){
-            storeReg(memoryLocation);
-        }
-        else if(IR[0]=='C' && IR[1]=='R'){
-            compare(memoryLocation);
-        }
-        else if(IR[0]=='B' && IR[1]=='T'){
-            branch(memoryLocation);
-        }
-        else{
-            halt();
-        }
-        
-        
-        break;
+    
     }
-    //bufferPrint();
+    bufferPrint();
 }
 
 
@@ -110,7 +44,7 @@ void load(){
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
-    buffer.assign(10,"#");
+    buffer.assign(40,'#');
     toggle=false;
     mainMemoryPrint();
 
@@ -151,7 +85,10 @@ void input(){
                 }
             }
             else if(data){
-                buffer[bufferData++]=text;
+                for(int i=0;i<text.size();i++){
+                    buffer[i]=text[i];
+                }
+                execute();
             }
              
         }
