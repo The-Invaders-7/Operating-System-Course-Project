@@ -12,6 +12,17 @@ bool toggle=false;
 string contain;
 
 
+void mainMemoryPrint(){
+  for(int i=0;i<10;i++){
+    cout<<"Block "<<i+1<<": ";
+    for(int j=0;j<40;j++){
+      cout<<mainMemory[i][j]<<" ";
+    }
+    cout<<endl;
+  }
+  
+}
+
 void load(){
     
     mainMemory.assign(10,vector<char> (40,'#'));
