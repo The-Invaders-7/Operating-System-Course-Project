@@ -62,7 +62,15 @@ void loadReg(int memoryLocation){
     increment();
 }
 void storeReg(int memoryLocation){
+    for(int i=0;i<4;i++){         
+        mainMemory[memoryLocation][i]=reg[i];
+    }
     
+    for(int i=0;i<4;i++){
+        cout<<mainMemory[memoryLocation][i]<<" ";
+    }
+    cout<<endl;
+    increment();
 }
 void compare(int memoryLocation){
     
