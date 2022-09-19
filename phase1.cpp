@@ -51,7 +51,15 @@ void writeData(int memoryLocation){
     
 }
 void loadReg(int memoryLocation){
+    for(int i=0;i<4;i++){         
+        reg[i]=mainMemory[memoryLocation][i];
+    }
     
+    for(int i=0;i<4;i++){
+        cout<<reg[i]<<" ";
+    }
+    cout<<endl;
+    increment();
 }
 void storeReg(int memoryLocation){
     
