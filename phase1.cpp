@@ -20,6 +20,19 @@ void printPartMemory(int start,int end){
         cout<<endl;
     }
 }
+void increment(){
+    if(IC[1]<9){
+        IC[1]=IC[1]+1;
+    }
+    else if(IC[0]<9){
+        IC[0]=IC[0]+1;
+        IC[1]=0;
+    }
+    else{
+        cout<<"Memory Overflow";
+    }
+    cout<<"Instruction Counter: "<<IC[0]<<" "<<IC[1]<<endl;
+}
 void readData(int memoryLocation){
     
     int a=0;
