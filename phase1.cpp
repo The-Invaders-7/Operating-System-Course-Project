@@ -13,14 +13,16 @@ string contain;
 
 
 void mainMemoryPrint(){
-  for(int i=0;i<10;i++){
-    cout<<"Block "<<i+1<<": ";
-    for(int j=0;j<40;j++){
-      cout<<mainMemory[i][j]<<" ";
+    for(int i=0;i<100;i++){
+        if(i%10==0){
+            cout<<"Block "<<(i/10+1)<<": "<<endl;
+        }
+        cout<<"Memory Location "<<(i+1)<<": ";
+        for(int j=0;j<4;j++){
+            cout<<mainMemory[i][j]<<" ";
+        }
+        cout<<endl;
     }
-    cout<<endl;
-  }
-  
 }
 
 void BufferPrint(){
