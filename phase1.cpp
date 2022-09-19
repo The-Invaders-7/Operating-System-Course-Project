@@ -72,9 +72,30 @@ void readData(int memoryLocation){
     printPartMemory(memoryLocation,i);
     
 }
+
 void writeData(int memoryLocation){
+    freopen("Output.txt","w",stdout);
+    int a=0;
+    int i=memoryLocation;
+    int j=0;
+    string data=buffer[bufferData++];
+
+    while(mainMemory[i][j]!='#'){
+        cout<<(mainMemory[i][j])<<" ";
+        mainMemory[i][j]=data[a];
+        j++;
+        a++;
+        if(j==4){
+            j=0;
+            i++;
+        }
+    }
+    
+    fclose(stdout);
+    increment();
     
 }
+
 void loadReg(int memoryLocation){
     for(int i=0;i<4;i++){         
         reg[i]=mainMemory[memoryLocation][i];
