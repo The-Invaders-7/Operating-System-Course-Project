@@ -78,11 +78,9 @@ void writeData(int memoryLocation){
     int a=0;
     int i=memoryLocation;
     int j=0;
-    string data=buffer[bufferData++];
 
     while(mainMemory[i][j]!='#'){
         cout<<(mainMemory[i][j])<<" ";
-        mainMemory[i][j]=data[a];
         j++;
         a++;
         if(j==4){
