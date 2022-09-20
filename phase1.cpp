@@ -75,17 +75,15 @@ void readData(int memoryLocation){
 
 void writeData(int memoryLocation){
     freopen("Output.txt","w",stdout);
-    int a=0;
-    int i=memoryLocation;
-    int j=0;
+    int row=memoryLocation;
+    int col=0;
 
-    while(mainMemory[i][j]!='#'){
-        cout<<(mainMemory[i][j])<<" ";
-        j++;
-        a++;
-        if(j==4){
-            j=0;
-            i++;
+    while(mainMemory[row][col]!='#'){
+        cout<<(mainMemory[row][col])<<" ";
+        col++;
+        if(col==4){
+            col=0;
+            row++;
         }
     }
     
