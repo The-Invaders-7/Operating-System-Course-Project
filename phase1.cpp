@@ -57,19 +57,19 @@ void increment(){
 }
 void readData(int memoryLocation){
     
-    int a=0;
-    int i=memoryLocation;
-    int j=0;
+    int dataIndex=0;
+    int row=memoryLocation;
+    int col=0;
     string data=buffer[bufferData++];
-    while(a<40 && a<data.size()){
-        mainMemory[i][j++]=data[a++];
-        if(j==4){
-            j=0;
-            i++;
+    while(dataIndex<40 && dataIndex<data.size()){
+        mainMemory[row][col++]=data[dataIndex++];
+        if(col==4){
+            col=0;
+            row++;
         }
     }
     increment();
-    printPartMemory(memoryLocation,i);
+    printPartMemory(memoryLocation,row);
     
 }
 
@@ -93,31 +93,31 @@ void writeData(int memoryLocation){
 }
 
 void loadReg(int memoryLocation){
-    for(int i=0;i<4;i++){         
-        reg[i]=mainMemory[memoryLocation][i];
+    for(int col=0;col<4;col++){         
+        reg[col]=mainMemory[memoryLocation][col];
     }
     
-    for(int i=0;i<4;i++){
-        cout<<reg[i]<<" ";
+    for(int col=0;col<4;col++){
+        cout<<reg[col]<<" ";
     }
     cout<<endl;
     increment();
 }
 void storeReg(int memoryLocation){
-    for(int i=0;i<4;i++){         
-        mainMemory[memoryLocation][i]=reg[i];
+    for(int col=0;col<4;col++){         
+        mainMemory[memoryLocation][col]=reg[col];
     }
     
-    for(int i=0;i<4;i++){
-        cout<<mainMemory[memoryLocation][i]<<" ";
+    for(int col=0;col<4;col++){
+        cout<<mainMemory[memoryLocation][col]<<" ";
     }
     cout<<endl;
     increment();
 }
 void compare(int memoryLocation){
     increment();
-    for(int i=0;i<4;i++){
-        if(reg[i]!=mainMemory[memoryLocation][i]){
+    for(int col=0;col<4;col++){
+        if(reg[col]!=mainMemory[memoryLocation][col]){
             return;
         }
     }
@@ -204,17 +204,17 @@ void input(){
         }
         else{
             if(prog){
-                int j=0;
-                int i=0;
-                int a=0;
-                while(a<text.size()){
-                    mainMemory[i][j++]=text[a++];
-                    if(text[a-1]=='H'){
-                        j+=3;
+                int col=0;
+                int row=0;
+                int dataIndex=0;
+                while(dataIndex<text.size()){
+                    mainMemory[row][col++]=text[dataIndex++];
+                    if(text[dataIndex-1]=='H'){
+                        col+=3;
                     }
-                    if(j==4){
-                        j=0;
-                        i++;
+                    if(col==4){
+                        col=0;
+                        row++;
                     }
                 }
             }
