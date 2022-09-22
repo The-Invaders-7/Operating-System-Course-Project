@@ -95,6 +95,7 @@ void writeData(int memoryLocation){
             row++;
         }   
     }
+    cout<<endl;
     fprintf(file, "%c",'\n');
     fclose(file);
     increment();
@@ -181,7 +182,6 @@ void execute(){
             branch(memoryLocation);
         }
         else{
-            mainMemoryPrint();
             halt();
             break;
         }
@@ -198,9 +198,22 @@ void input(){
     string text;
     ifstream myFile("Input.txt");
     while (getline(myFile,text)){
-        cout<<text<<endl;
+        cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
+            if(data){
+                cout<<"First Job"<<endl;
+                bufferData=0;
+                execute();
+                cout<<"Second Job"<<endl;
+                FILE* file = fopen("Output.txt", "a");
+                fprintf(file, "%c",'\n');
+                fprintf(file, "%c",'\n');
+                fclose(file);
+                load();
+                bufferData=0;
+                data=false;
+            }
             prog=true;
         }
         else if(str=="$DTA"){
