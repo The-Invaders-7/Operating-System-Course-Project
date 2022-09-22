@@ -15,7 +15,8 @@ int bufferData=0;
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
         if(i%10==0){
-            cout<<"Block "<<(i/10+1)<<": "<<endl;
+            cout<<"Block "<<(i/10+1)<<": ";
+            cout<<endl;
         }
         cout<<"Memory Location "<<(i+1)<<": ";
         for(int j=0;j<4;j++){
@@ -25,7 +26,7 @@ void mainMemoryPrint(){
     }
 }
 void load(){
-    mainMemory.assign(100,vector<char> (4,'#'));
+    mainMemory.assign(100,vector<char> (4));
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
@@ -33,14 +34,16 @@ void load(){
     toggle=false;
     mainMemoryPrint();
 }
-void printPartMemory(int start,int end){
-    for(int i=start;i<=end;i++){
-        cout<<"Memory Location "<<(i+1)<<": ";
+void printPartMemory(int start){
+    cout<<"Block "<<start/10<<endl;
+    for(int i=start;i<start+10;i++){
+        cout<<"Memory Location "<<i<<" ";
         for(int j=0;j<4;j++){
             cout<<mainMemory[i][j]<<" ";
         }
         cout<<endl;
     }
+    
 }
 void increment(){
     if(IC[1]<9){
@@ -58,10 +61,11 @@ void increment(){
 void readData(int memoryLocation){
     
     int dataIndex=0;
+    memoryLocation=(memoryLocation/10)*10;
     int row=memoryLocation;
     int col=0;
     string data=buffer[bufferData++];
-    while(dataIndex<40 && dataIndex<data.size()){
+    while(dataIndex<40 && dataIndex<data.size()-1){
         mainMemory[row][col++]=data[dataIndex++];
         if(col==4){
             col=0;
@@ -69,25 +73,30 @@ void readData(int memoryLocation){
         }
     }
     increment();
-    printPartMemory(memoryLocation,row);
+    printPartMemory(memoryLocation);
     
 }
 
 void writeData(int memoryLocation){
-    freopen("Output.txt","w",stdout);
-    int row=memoryLocation;
+    FILE* file = fopen("Output.txt", "a");
+    int row=(memoryLocation/10)*10;
     int col=0;
-
-    while(mainMemory[row][col]!='#'){
-        cout<<(mainMemory[row][col])<<" ";
+    for(int i=0;i<40;i++){
+        if(mainMemory[row][col]=='\0'){
+            int a=6;   
+        }
+        else{
+            fprintf(file, "%c", mainMemory[row][col]);
+            cout<<mainMemory[row][col];   
+        }
         col++;
         if(col==4){
             col=0;
             row++;
-        }
+        }   
     }
-    
-    fclose(stdout);
+    fprintf(file, "%c",'\n');
+    fclose(file);
     increment();
     
 }
@@ -145,6 +154,7 @@ void execute(){
     
     mainMemoryPrint();
     while(true){
+        cout<<endl;
         IR=mainMemory[IC[0]*10+IC[1]];
         cout<<"Instruction: ";
         for(int i=0;i<4;i++){
@@ -171,10 +181,10 @@ void execute(){
             branch(memoryLocation);
         }
         else{
+            mainMemoryPrint();
             halt();
             break;
         }
-        
     }
     //bufferPrint();
 }
@@ -207,10 +217,12 @@ void input(){
                 int col=0;
                 int row=0;
                 int dataIndex=0;
-                while(dataIndex<text.size()){
+                while(dataIndex<text.size()-1){
                     mainMemory[row][col++]=text[dataIndex++];
                     if(text[dataIndex-1]=='H'){
-                        col+=3;
+                        mainMemory[row][col++]='0';
+                        mainMemory[row][col++]='0';
+                        mainMemory[row][col++]='0';
                     }
                     if(col==4){
                         col=0;
