@@ -1,5 +1,7 @@
 # Operating-System-Course-Project
 
+Currently the Phase 1 instructions are completed and we are working on making them more error free.
+
 ASSUMPTIONS:
 - Jobs entered without error in input file
 - No physical separation between jobs
