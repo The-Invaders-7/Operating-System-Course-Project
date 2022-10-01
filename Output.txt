@@ -1,108 +1,42 @@
-Hello Worl
+Hello World
 
 
-NOT SAM
+NOT SAME
 
 
-SAM
+SAME
 
 
+*
+**
+***
+****
+*****
 
 
+   *
+  ***
+ *****
+*******
 
 
+*
+**
+***
+**
+*
 
 
+****
+*  *
+*  *
+****
 
 
-
-
-
-
-
-
-
-
-
-
-Hello Worl
-
-
-NOT SAM
-
-
-SAM
-
-
-
-
-
-
-
-
-
-ýa
-ýaýaýa
-ýaýaýaýaýa
-ýaýaýaýaýaýaýa
-
-
-
-
-
-
-
-Hello Worl
-
-
-NOT SAM
-
-
-SAM
-
-
-
-
-
-
-
-
-
-ýa
-ýaýaýa
-ýaýaýaýaýa
-ýaýaýaýaýaýaýa
-
-
-
-
-
-
-
-Hello Worl
-
-
-NOT SAM
-
-
-SAM
-
-
-
-
-
-
-
-
-
-ýa
-ýaýaýa
-ýaýaýaýaýa
-ýaýaýaýaýaýaýa
-
-
-
-
-
-
-
+*
+ *
+  *
+   *
+  *
+ *
+*
