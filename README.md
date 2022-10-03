@@ -1,5 +1,9 @@
 # Operating-System-Course-Project
 
+Currently the Phase 1 instructions are completed and we are working on making them more error free.
+
+Everyone, please make sure that you work on separate branches so we can later merge them after reviewing changes.
+
 ASSUMPTIONS:
 - Jobs entered without error in input file
 - No physical separation between jobs
