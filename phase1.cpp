@@ -10,7 +10,7 @@ vector<char> reg(4);
 vector<string> buffer(10);
 bool toggle=false;
 int bufferData=0;
-
+int SI=0;
 
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
