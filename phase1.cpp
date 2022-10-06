@@ -9,6 +9,7 @@ vector<int> IC(2);
 vector<char> reg(4);
 vector<char> buffer(40);
 bool toggle=false;
+int SI=0;
 
 ifstream myFile("Input.txt");
 
@@ -147,6 +148,19 @@ void branch(int memoryLocation){
 void halt(){
     load();
 }
+void MOS(int memoryLocation){
+    if(SI==1){
+        readData(memoryLocation);
+    }
+    else if(SI==2){
+        writeData(memoryLocation);
+    }
+    else if(SI==3){
+        halt();
+    }
+    SI=0;
+    return;
+}
 void bufferPrint(){
     for(int i=0;i<40;i++){
         cout<<buffer[i];
@@ -166,10 +180,12 @@ void execute(){
         cout<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
         if(IR[0]=='G' && IR[1]=='D'){
-            readData(memoryLocation);
+            SI=1;
+            MOS(memoryLocation);
         }
         else if(IR[0]=='P' && IR[1]=='D'){
-            writeData(memoryLocation);
+            SI=2;
+            MOS(memoryLocation);
         }
         else if(IR[0]=='L' && IR[1]=='R'){
             loadReg(memoryLocation);
@@ -184,7 +200,8 @@ void execute(){
             branch(memoryLocation);
         }
         else{
-            halt();
+            SI=3;
+            MOS(memoryLocation);
             break;
         }
     }
