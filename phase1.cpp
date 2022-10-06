@@ -7,10 +7,10 @@ vector<vector<char>> mainMemory(100,vector<char> (4));
 vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
-vector<string> buffer(10);
+vector<char> buffer(40);
 bool toggle=false;
-int bufferData=0;
 
+ifstream myFile("Input.txt");
 
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
@@ -30,7 +30,7 @@ void load(){
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
-    buffer.assign(10,"#");
+    buffer.assign(40,'#');
     toggle=false;
     mainMemoryPrint();
 }
@@ -64,9 +64,11 @@ void readData(int memoryLocation){
     memoryLocation=(memoryLocation/10)*10;
     int row=memoryLocation;
     int col=0;
-    string data=buffer[bufferData++];
-    while(dataIndex<40 && dataIndex<data.size()-1){
-        mainMemory[row][col++]=data[dataIndex++];
+    string text;
+    getline(myFile,text);
+    cout<<text;
+    while(dataIndex<40 && dataIndex<text.size()-1){
+        mainMemory[row][col++]=text[dataIndex++];
         if(col==4){
             col=0;
             row++;
@@ -194,9 +196,8 @@ void execute(){
 void input(){
     
     bool prog=false;
-    bool data=false;
     string text;
-    ifstream myFile("Input.txt");
+    
     while (getline(myFile,text)){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
@@ -204,15 +205,11 @@ void input(){
             prog=true;
         }
         else if(str=="$DTA"){
-            bufferData=0;
+            execute();
             prog=false;
-            data=true;
             
         }
         else if(str=="$END"){
-            data=false;
-            bufferData=0;
-            execute();
             FILE* file = fopen("Output.txt", "a");
             fprintf(file, "%c",'\n');
             fprintf(file, "%c",'\n');
@@ -237,10 +234,6 @@ void input(){
                     }
                 }
             }
-            else if(data){
-                buffer[bufferData++]=text;
-            }
-             
         }
     }
 }
