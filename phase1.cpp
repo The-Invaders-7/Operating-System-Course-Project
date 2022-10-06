@@ -201,29 +201,23 @@ void input(){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
-            if(data){
-                cout<<"First Job"<<endl;
-                bufferData=0;
-                execute();
-                cout<<"Second Job"<<endl;
-                FILE* file = fopen("Output.txt", "a");
-                fprintf(file, "%c",'\n');
-                fprintf(file, "%c",'\n');
-                fclose(file);
-                load();
-                bufferData=0;
-                data=false;
-            }
             prog=true;
         }
         else if(str=="$DTA"){
+            bufferData=0;
             prog=false;
             data=true;
             
         }
         else if(str=="$END"){
+            data=false;
             bufferData=0;
             execute();
+            FILE* file = fopen("Output.txt", "a");
+            fprintf(file, "%c",'\n');
+            fprintf(file, "%c",'\n');
+            fclose(file);
+            load();
         }
         else{
             if(prog){
