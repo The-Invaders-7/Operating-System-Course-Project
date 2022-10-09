@@ -214,12 +214,15 @@ void input(){
     
     bool prog=false;
     string text;
-    
+    int col=0;
+    int row=0;
     while (getline(myFile,text)){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
             prog=true;
+            col=0;
+            row=0;
         }
         else if(str=="$DTA"){
             execute();
@@ -235,8 +238,6 @@ void input(){
         }
         else{
             if(prog){
-                int col=0;
-                int row=0;
                 int dataIndex=0;
                 while(dataIndex<text.size()-1){
                     mainMemory[row][col++]=text[dataIndex++];
