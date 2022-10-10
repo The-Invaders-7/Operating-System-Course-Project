@@ -13,6 +13,7 @@ int SI=0;
 
 ifstream myFile("Input.txt");
 
+
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
         if(i%10==0){
