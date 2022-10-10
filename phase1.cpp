@@ -7,10 +7,12 @@ vector<vector<char>> mainMemory(100,vector<char> (4));
 vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
-vector<string> buffer(10);
+vector<char> buffer(40);
 bool toggle=false;
-int bufferData=0;
 int SI=0;
+
+ifstream myFile("Input.txt");
+
 
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
@@ -30,7 +32,7 @@ void load(){
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
-    buffer.assign(10,"#");
+    buffer.assign(40,'#');
     toggle=false;
     mainMemoryPrint();
 }
@@ -64,9 +66,12 @@ void readData(int memoryLocation){
     memoryLocation=(memoryLocation/10)*10;
     int row=memoryLocation;
     int col=0;
-    string data=buffer[bufferData++];
-    while(dataIndex<40 && dataIndex<data.size()-1){
-        mainMemory[row][col++]=data[dataIndex++];
+    string text;
+    getline(myFile,text);
+    cout<<text<<endl;
+    std::vector<char> buffer(text.begin(),text.end()); 
+    while(dataIndex<40 && dataIndex<buffer.size()-1){
+        mainMemory[row][col++]=buffer[dataIndex++];
         if(col==4){
             col=0;
             row++;
@@ -145,6 +150,19 @@ void branch(int memoryLocation){
 void halt(){
     load();
 }
+void MOS(int memoryLocation){
+    if(SI==1){
+        readData(memoryLocation);
+    }
+    else if(SI==2){
+        writeData(memoryLocation);
+    }
+    else if(SI==3){
+        halt();
+    }
+    SI=0;
+    return;
+}
 void bufferPrint(){
     for(int i=0;i<40;i++){
         cout<<buffer[i];
@@ -164,10 +182,12 @@ void execute(){
         cout<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
         if(IR[0]=='G' && IR[1]=='D'){
-            readData(memoryLocation);
+            SI=1;
+            MOS(memoryLocation);
         }
         else if(IR[0]=='P' && IR[1]=='D'){
-            writeData(memoryLocation);
+            SI=2;
+            MOS(memoryLocation);
         }
         else if(IR[0]=='L' && IR[1]=='R'){
             loadReg(memoryLocation);
@@ -182,7 +202,8 @@ void execute(){
             branch(memoryLocation);
         }
         else{
-            halt();
+            SI=3;
+            MOS(memoryLocation);
             break;
         }
     }
@@ -194,41 +215,31 @@ void execute(){
 void input(){
     
     bool prog=false;
-    bool data=false;
     string text;
-    ifstream myFile("Input.txt");
+    int col=0;
+    int row=0;
     while (getline(myFile,text)){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
-            if(data){
-                cout<<"First Job"<<endl;
-                bufferData=0;
-                execute();
-                cout<<"Second Job"<<endl;
-                FILE* file = fopen("Output.txt", "a");
-                fprintf(file, "%c",'\n');
-                fprintf(file, "%c",'\n');
-                fclose(file);
-                load();
-                bufferData=0;
-                data=false;
-            }
             prog=true;
+            col=0;
+            row=0;
         }
         else if(str=="$DTA"){
+            execute();
             prog=false;
-            data=true;
             
         }
         else if(str=="$END"){
-            bufferData=0;
-            execute();
+            FILE* file = fopen("Output.txt", "a");
+            fprintf(file, "%c",'\n');
+            fprintf(file, "%c",'\n');
+            fclose(file);
+            load();
         }
         else{
             if(prog){
-                int col=0;
-                int row=0;
                 int dataIndex=0;
                 while(dataIndex<text.size()-1){
                     mainMemory[row][col++]=text[dataIndex++];
@@ -243,10 +254,6 @@ void input(){
                     }
                 }
             }
-            else if(data){
-                buffer[bufferData++]=text;
-            }
-             
         }
     }
 }
