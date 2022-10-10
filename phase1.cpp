@@ -68,7 +68,7 @@ void readData(int memoryLocation){
     string text;
     getline(myFile,text);
     cout<<text;
-    while(dataIndex<40 && dataIndex<text.size()-1){
+    while(dataIndex<40 && dataIndex<text.size()){
         mainMemory[row][col++]=text[dataIndex++];
         if(col==4){
             col=0;
