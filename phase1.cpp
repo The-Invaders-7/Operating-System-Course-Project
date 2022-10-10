@@ -151,6 +151,19 @@ void bufferPrint(){
     }
     cout<<endl;
 }
+
+void masterMode(int memoryLocation)
+{
+    if (SI == 1)
+        readData(memoryLocation);
+    if (SI == 2)
+        writeData(memoryLocation);
+    if (SI == 3)
+    {
+        halt();
+    }
+}
+
 void execute(){
     
     mainMemoryPrint();
@@ -164,10 +177,14 @@ void execute(){
         cout<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
         if(IR[0]=='G' && IR[1]=='D'){
-            readData(memoryLocation);
+            SI =1;
+            masterMode(memoryLocation);
+            // readData(memoryLocation);
         }
         else if(IR[0]=='P' && IR[1]=='D'){
-            writeData(memoryLocation);
+            SI = 2;
+            masterMode(memoryLocation);
+            // writeData(memoryLocation);
         }
         else if(IR[0]=='L' && IR[1]=='R'){
             loadReg(memoryLocation);
@@ -182,7 +199,9 @@ void execute(){
             branch(memoryLocation);
         }
         else{
-            halt();
+            SI = 3;
+            masterMode(memoryLocation);
+            // halt();
             break;
         }
     }
