@@ -70,7 +70,7 @@ void readData(int memoryLocation){
     getline(myFile,text);
     cout<<text<<endl;
     std::vector<char> buffer(text.begin(),text.end()); 
-    while(dataIndex<40 && dataIndex<buffer.size()-1){
+    while(dataIndex<40 && dataIndex<buffer.size()){
         mainMemory[row][col++]=buffer[dataIndex++];
         if(col==4){
             col=0;
@@ -241,7 +241,7 @@ void input(){
         else{
             if(prog){
                 int dataIndex=0;
-                while(dataIndex<text.size()-1){
+                while(dataIndex<text.size()){
                     mainMemory[row][col++]=text[dataIndex++];
                     if(text[dataIndex-1]=='H'){
                         mainMemory[row][col++]='0';
