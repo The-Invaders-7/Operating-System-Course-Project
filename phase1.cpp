@@ -1,15 +1,26 @@
 #include <iostream>
 #include <bits/stdc++.h>
+#include <string>
 #include<fstream>
 using namespace std;
 
-vector<vector<char>> mainMemory(100,vector<char> (4));
+vector<vector<char>> mainMemory(300,vector<char> (4));
 vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
 vector<char> buffer(40);
 bool toggle=false;
 int SI=0;
+int TI=0;
+int PI=0;
+int EM=0;
+
+struct {             
+  int TTL;         
+  int TLL;   
+  int TTC;
+  int TLC;
+} PCB; 
 
 ifstream myFile("Input.txt");
 
@@ -34,6 +45,10 @@ void load(){
     reg.assign(4,'#');
     buffer.assign(40,'#');
     toggle=false;
+    PI=0;
+    SI=0;
+    TI=0;
+    EM=0;
     mainMemoryPrint();
 }
 void printPartMemory(int start){
@@ -60,6 +75,36 @@ void increment(){
     }
     cout<<"Instruction Counter: "<<IC[0]<<" "<<IC[1]<<endl;
 }
+void terminate(int errorCode){
+    if(errorCode==0){
+        cout<<"No Error"<<endl;
+        EM=0;
+    }
+    else if(errorCode==1){
+        cout<<"Out of Data"<<endl;
+        EM=1;
+    }
+    else if(errorCode==2){
+        cout<<"Line Limit Exceeded"<<endl;
+        EM=2;
+    }
+    else if(errorCode==3){
+        cout<<"Time Limit Exceeded"<<endl;
+        EM=3;
+    }
+    else if(errorCode==4){
+        cout<<"Operation Code Error"<<endl;
+        EM=4;
+    }
+    else if(errorCode==5){
+        cout<<"Operand Error"<<endl;
+        EM=5;
+    }
+    else if(errorCode==0){
+        cout<<"Invalid Page Fault"<<endl;
+        EM=6;
+    }
+}
 void readData(int memoryLocation){
     
     int dataIndex=0;
@@ -69,6 +114,10 @@ void readData(int memoryLocation){
     string text;
     getline(myFile,text);
     cout<<text<<endl;
+    if(text.substr(0,4)=="$END"){
+        terminate(1);
+        return;
+    }
     std::vector<char> buffer(text.begin(),text.end()); 
     while(dataIndex<40 && dataIndex<buffer.size()){
         mainMemory[row][col++]=buffer[dataIndex++];
@@ -151,14 +200,45 @@ void halt(){
     load();
 }
 void MOS(int memoryLocation){
-    if(SI==1){
+    cout<<"SI "<<SI<<" TI "<<TI<<" PI "<<PI<<endl;
+    if(SI==1 && TI==0){
         readData(memoryLocation);
     }
-    else if(SI==2){
+    else if(SI==1 && TI==2){
+        terminate(3);
+    }
+    else if(SI==2 && TI==0){
         writeData(memoryLocation);
     }
-    else if(SI==3){
-        halt();
+    else if(SI==2 && TI==2){
+        terminate(3);
+    }
+    else if(SI==3 && TI==0){
+        terminate(0);
+    }
+    else if(SI==3 && TI==2){
+        terminate(0);
+    }
+
+    if(PI==1 && TI==0){
+        terminate(4);
+    }
+    else if(PI==1 && TI==2){
+        terminate(3);
+        terminate(4);
+    }
+    else if(PI==2 && TI==0){
+        terminate(5);
+    }
+    else if(PI==2 && TI==2){
+        terminate(3);
+        terminate(5);
+    }
+    else if(SI==3 && TI==2){
+        terminate(3);
+    }
+    else if(SI==3 && TI==2){
+        terminate(0);
     }
     SI=0;
     return;
@@ -180,32 +260,98 @@ void execute(){
             cout<<IR[i];
         }
         cout<<endl;
+        cout<<"PCB.TTC "<<PCB.TTC<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
-        if(IR[0]=='G' && IR[1]=='D'){
-            SI=1;
+        if(memoryLocation>99 || memoryLocation<0){
+            PI=2;
             MOS(memoryLocation);
+            return;
+        }
+        if(IR[0]=='G' && IR[1]=='D'){
+            PCB.TTC+=2;
+            SI=1;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
+            MOS(memoryLocation);
+            if(EM!=0){
+                return;
+            }
         }
         else if(IR[0]=='P' && IR[1]=='D'){
+            PCB.TTC+=1;
+            PCB.TLC+=1;
             SI=2;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
+            if(PCB.TLC>PCB.TLL){
+                terminate(2);
+                return;
+            }
             MOS(memoryLocation);
         }
         else if(IR[0]=='L' && IR[1]=='R'){
+            PCB.TTC+=1;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
             loadReg(memoryLocation);
         }
         else if(IR[0]=='S' && IR[1]=='R'){
+            PCB.TTC+=2;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
             storeReg(memoryLocation);
         }
         else if(IR[0]=='C' && IR[1]=='R'){
+            PCB.TTC+=1;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
             compare(memoryLocation);
         }
         else if(IR[0]=='B' && IR[1]=='T'){
+            PCB.TTC+=1;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
             branch(memoryLocation);
         }
-        else{
+        else if(IR[0]=='H'){
+            PCB.TTC+=1;
             SI=3;
+            if(PCB.TTC>PCB.TTL){
+                TI=2;
+                MOS(memoryLocation);
+                return;
+            }
             MOS(memoryLocation);
-            break;
+            return;
         }
+        else{
+            PI=1;
+            MOS(memoryLocation);
+            return;
+        }
+        cout<<"Instruction: ";
+        for(int i=0;i<4;i++){
+            cout<<IR[i];
+        }
+        cout<<endl;
     }
     //bufferPrint();
 }
@@ -222,6 +368,13 @@ void input(){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
+            PCB.TTL=stoi(text.substr(8,4));
+            cout<<"TTL: "<<text.substr(8,4)<<endl;
+            PCB.TLL=stoi(text.substr(12,4));
+            cout<<"TLL: "<<text.substr(12,4)<<endl;
+            PCB.TTC=0;
+            PCB.TLC=0;
+            cout<<PCB.TTC<<" "<<PCB.TLC<<" "<<PCB.TTC<<" "<<PCB.TTL<<endl;
             prog=true;
             col=0;
             row=0;
@@ -229,9 +382,9 @@ void input(){
         else if(str=="$DTA"){
             execute();
             prog=false;
-            
         }
         else if(str=="$END"){
+            cout<<PCB.TTC<<" "<<PCB.TLC<<" "<<PCB.TTL<<" "<<PCB.TLL<<endl;
             FILE* file = fopen("Output.txt", "a");
             fprintf(file, "%c",'\n');
             fprintf(file, "%c",'\n');
@@ -243,7 +396,7 @@ void input(){
                 int dataIndex=0;
                 while(dataIndex<text.size()){
                     mainMemory[row][col++]=text[dataIndex++];
-                    if(text[dataIndex-1]=='H'){
+                    if(text[dataIndex-1]=='H' && col==1){
                         mainMemory[row][col++]='0';
                         mainMemory[row][col++]='0';
                         mainMemory[row][col++]='0';

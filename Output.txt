@@ -1,56 +1,122 @@
 Hello World
 
 
-NOT SAME
+Hello World
 
 
-SAME
+Hello World
 
 
-*
-**
-***
-****
-*****
+Hello World
 
 
-   *
-  ***
- *****
-*******
+Hello World
 
 
-   *
-  ***
- *****
-*******
- *****
-  ***
-   *
+Hello World
 
 
-*
-**
-***
-**
-*
+Hello World
 
 
-****
-*  *
-*  *
-****
+Hello World
 
 
-*
- *
-  *
-   *
-  *
- *
-*
 
 
-My favourite subject is OS
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+Hello World
+
+
+
+
+Hello World
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hello World
+
+
+
+
+
+
+
+
+Hello World
+
+
+
+
+Hello World
 
 
