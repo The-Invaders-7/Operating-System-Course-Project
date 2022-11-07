@@ -15,16 +15,38 @@ int TI=0;
 int PI=0;
 int EM=0;
 
-struct {             
-  int TTL;         
-  int TLL;   
-  int TTC;
-  int TLC;
-} PCB; 
+// class for PCB
+class ProcessControlBlock{
+    public:
+        int jobID;
+        int TTL;         
+        int TLL;   
+        int TTC;
+        int TLC;
 
+        ProcessControlBlock(){
+        }
+
+        ProcessControlBlock(int jobID, int TTL, int TLL){
+            this->jobID = jobID;
+            this->TLC = 0;
+            this->TLL = TLL;
+            this->TTC = 0;
+            this->TTL = TTL;
+        }
+};
+
+// struct {             
+//   int TTL;         
+//   int TLL;   
+//   int TTC;
+//   int TLC;
+// } PCB; 
+
+// taking input from txt file
 ifstream myFile("Input.txt");
 
-
+// printing the main memory 
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
         if(i%10==0){
@@ -38,6 +60,8 @@ void mainMemoryPrint(){
         cout<<endl;
     }
 }
+
+// initializing all the necessary variables
 void load(){
     mainMemory.assign(100,vector<char> (4));
     IR.assign(4,'#');
@@ -51,6 +75,8 @@ void load(){
     EM=0;
     mainMemoryPrint();
 }
+
+// printing data stored in the memory block
 void printPartMemory(int start){
     cout<<"Block "<<start/10<<endl;
     for(int i=start;i<start+10;i++){
@@ -62,6 +88,8 @@ void printPartMemory(int start){
     }
     
 }
+
+// incrementing the intruction couter
 void increment(){
     if(IC[1]<9){
         IC[1]=IC[1]+1;
@@ -75,6 +103,8 @@ void increment(){
     }
     cout<<"Instruction Counter: "<<IC[0]<<" "<<IC[1]<<endl;
 }
+
+// terminating the process based on errorcode
 void terminate(int errorCode){
     if(errorCode==0){
         cout<<"No Error"<<endl;
@@ -105,6 +135,8 @@ void terminate(int errorCode){
         EM=6;
     }
 }
+
+// GD-> get data line by line from the input file
 void readData(int memoryLocation){
     
     int dataIndex=0;
@@ -131,6 +163,7 @@ void readData(int memoryLocation){
     
 }
 
+// writing data to the output file
 void writeData(int memoryLocation){
     FILE* file = fopen("Output.txt", "a");
     int row=(memoryLocation/10)*10;
@@ -167,6 +200,7 @@ void loadReg(int memoryLocation){
     cout<<endl;
     increment();
 }
+
 void storeReg(int memoryLocation){
     for(int col=0;col<4;col++){         
         mainMemory[memoryLocation][col]=reg[col];
@@ -178,6 +212,7 @@ void storeReg(int memoryLocation){
     cout<<endl;
     increment();
 }
+
 void compare(int memoryLocation){
     increment();
     for(int col=0;col<4;col++){
@@ -187,6 +222,7 @@ void compare(int memoryLocation){
     }
     toggle=true;
 }
+
 void branch(int memoryLocation){
     if(toggle){
         IC[0]=memoryLocation/10;
@@ -196,9 +232,11 @@ void branch(int memoryLocation){
         increment();   
     }
 }
+
 void halt(){
     load();
 }
+
 void MOS(int memoryLocation){
     cout<<"SI "<<SI<<" TI "<<TI<<" PI "<<PI<<endl;
     if(SI==1 && TI==0){
@@ -211,6 +249,7 @@ void MOS(int memoryLocation){
         writeData(memoryLocation);
     }
     else if(SI==2 && TI==2){
+        writeData(memoryLocation);
         terminate(3);
     }
     else if(SI==3 && TI==0){
@@ -234,22 +273,25 @@ void MOS(int memoryLocation){
         terminate(3);
         terminate(5);
     }
-    else if(SI==3 && TI==2){
+    else if(PI==3 && TI==2){
         terminate(3);
     }
-    else if(SI==3 && TI==2){
+    else if(PI==3 && TI==0){
         terminate(0);
+        cout<<"Page Fault\n";
     }
     SI=0;
     return;
 }
+
 void bufferPrint(){
     for(int i=0;i<40;i++){
         cout<<buffer[i];
     }
     cout<<endl;
 }
-void execute(){
+
+void execute(ProcessControlBlock PCB){
     
     mainMemoryPrint();
     while(true){
@@ -364,23 +406,22 @@ void input(){
     string text;
     int col=0;
     int row=0;
+    ProcessControlBlock PCB;
     while (getline(myFile,text)){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
-            PCB.TTL=stoi(text.substr(8,4));
-            cout<<"TTL: "<<text.substr(8,4)<<endl;
-            PCB.TLL=stoi(text.substr(12,4));
-            cout<<"TLL: "<<text.substr(12,4)<<endl;
-            PCB.TTC=0;
-            PCB.TLC=0;
-            cout<<PCB.TTC<<" "<<PCB.TLC<<" "<<PCB.TTC<<" "<<PCB.TTL<<endl;
+            PCB = ProcessControlBlock(
+                stoi(text.substr(4,4)),
+                stoi(text.substr(8,4)),
+                stoi(text.substr(12,4))
+            );
             prog=true;
             col=0;
             row=0;
         }
         else if(str=="$DTA"){
-            execute();
+            execute(PCB);
             prog=false;
         }
         else if(str=="$END"){
