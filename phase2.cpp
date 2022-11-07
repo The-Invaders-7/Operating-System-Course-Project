@@ -9,11 +9,15 @@ vector<char> IR(4);
 vector<int> IC(2);
 vector<char> reg(4);
 vector<char> buffer(40);
+vector<int> pages;
 bool toggle=false;
 int SI=0;
 int TI=0;
 int PI=0;
 int EM=0;
+int PTR;
+int cards=0;
+
 
 struct {             
   int TTL;         
@@ -26,7 +30,7 @@ ifstream myFile("Input.txt");
 
 
 void mainMemoryPrint(){
-    for(int i=0;i<100;i++){
+    for(int i=0;i<300;i++){
         if(i%10==0){
             cout<<"Block "<<(i/10+1)<<": ";
             cout<<endl;
@@ -39,16 +43,18 @@ void mainMemoryPrint(){
     }
 }
 void load(){
-    mainMemory.assign(100,vector<char> (4));
+    mainMemory.assign(300,vector<char> (4));
+    pages.assign(0,'#');
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
     buffer.assign(40,'#');
     toggle=false;
     PI=0;
-    SI=0;
+    SI=3;
     TI=0;
     EM=0;
+    cards=0;
     mainMemoryPrint();
 }
 void printPartMemory(int start){
@@ -100,7 +106,7 @@ void terminate(int errorCode){
         cout<<"Operand Error"<<endl;
         EM=5;
     }
-    else if(errorCode==0){
+    else if(errorCode==6){
         cout<<"Invalid Page Fault"<<endl;
         EM=6;
     }
@@ -188,6 +194,7 @@ void compare(int memoryLocation){
     toggle=true;
 }
 void branch(int memoryLocation){
+    cout<<memoryLocation<<endl;
     if(toggle){
         IC[0]=memoryLocation/10;
         IC[1]=memoryLocation%10;
@@ -195,6 +202,7 @@ void branch(int memoryLocation){
     else{
         increment();   
     }
+
 }
 void halt(){
     load();
@@ -240,7 +248,7 @@ void MOS(int memoryLocation){
     else if(SI==3 && TI==2){
         terminate(0);
     }
-    SI=0;
+    SI=3;
     return;
 }
 void bufferPrint(){
@@ -249,33 +257,91 @@ void bufferPrint(){
     }
     cout<<endl;
 }
+int generateRandom(){
+    int random=100;
+    bool flag;
+    while(true){
+        flag=true;
+        random=rand();
+        random%=30;
+        for(int num:pages){
+            if(num==random){
+                flag=false;
+                break;
+            }
+        }
+        if(flag){
+            pages.push_back(random);
+            return random; 
+        }
+    }
+}
+int getRealAddress(int virtualAddress){
+    int PTE=PTR+virtualAddress/10;
+    if(mainMemory[PTE][0]=='\0'){
+        return -1;
+    }
+    int RA=((mainMemory[PTE][2]-'0')*10+(mainMemory[PTE][3]-'0'))*10+virtualAddress%10;
+    return RA;
+}
+void allocateMemory(int virtualAddress){
+    int PTE=PTR+virtualAddress/10;
+    mainMemory[PTE][0]='0';
+    mainMemory[PTE][1]=virtualAddress/10+'0';
+    int page=generateRandom();
+    mainMemory[PTE][2]=page/10+'0';
+    mainMemory[PTE][3]=page%10+'0';
+}
+bool checkPageFault(int virtualAddress){
+    int realAddress=getRealAddress(virtualAddress);
+    if(realAddress==-1){
+        //Page Fault
+        if((IR[0]=='G' && IR[1]=='D') || (IR[0]=='S' && IR[1]=='R')){
+            cout<<"Valid Page Fault"<<endl;
+            allocateMemory(virtualAddress);
+            return false;
+        }
+        else{
+            cout<<"Invalid Page Fault"<<endl;
+            return true;
+        }
+    }
+    return false;
+}
 void execute(){
     
     mainMemoryPrint();
     while(true){
-        cout<<endl;
-        IR=mainMemory[IC[0]*10+IC[1]];
+        IR=mainMemory[getRealAddress(IC[0]*10+IC[1])];
+        cout<<(IC[0]*10+IC[1])<<endl;
         cout<<"Instruction: ";
         for(int i=0;i<4;i++){
             cout<<IR[i];
         }
         cout<<endl;
-        cout<<"PCB.TTC "<<PCB.TTC<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
+        cout<<"PCB.TTC "<<PCB.TTC<<endl;
+        if(IR[0]!='H' && checkPageFault(memoryLocation)){
+            PI=3;
+            MOS(memoryLocation);
+            return;
+        }
         if(memoryLocation>99 || memoryLocation<0){
             PI=2;
             MOS(memoryLocation);
             return;
         }
+        int RA=getRealAddress(memoryLocation);
+        cout<<"Virtual Address: "<<(IC[0]*10+IC[1])<<" Real Address: "<<getRealAddress(IC[0]*10+IC[1])<<" Memory Location: "<<memoryLocation<<" RA: "<<RA<<endl;;
         if(IR[0]=='G' && IR[1]=='D'){
             PCB.TTC+=2;
             SI=1;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
-            MOS(memoryLocation);
+            MOS(RA);
             if(EM!=0){
                 return;
             }
@@ -286,47 +352,48 @@ void execute(){
             SI=2;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
             if(PCB.TLC>PCB.TLL){
                 terminate(2);
                 return;
             }
-            MOS(memoryLocation);
+            MOS(RA);
         }
         else if(IR[0]=='L' && IR[1]=='R'){
             PCB.TTC+=1;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
-            loadReg(memoryLocation);
+            loadReg(RA);
         }
         else if(IR[0]=='S' && IR[1]=='R'){
             PCB.TTC+=2;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
-            storeReg(memoryLocation);
+            storeReg(RA);
         }
         else if(IR[0]=='C' && IR[1]=='R'){
             PCB.TTC+=1;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
-            compare(memoryLocation);
+            compare(RA);
         }
         else if(IR[0]=='B' && IR[1]=='T'){
+            cout<<"Toggle: "<<toggle<<endl;
             PCB.TTC+=1;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
             branch(memoryLocation);
@@ -336,15 +403,15 @@ void execute(){
             SI=3;
             if(PCB.TTC>PCB.TTL){
                 TI=2;
-                MOS(memoryLocation);
+                MOS(RA);
                 return;
             }
-            MOS(memoryLocation);
+            MOS(RA);
             return;
         }
         else{
             PI=1;
-            MOS(memoryLocation);
+            MOS(RA);
             return;
         }
         cout<<"Instruction: ";
@@ -352,9 +419,12 @@ void execute(){
             cout<<IR[i];
         }
         cout<<endl;
+        printPartMemory(PTR);
     }
     //bufferPrint();
 }
+
+
 
 
 
@@ -368,6 +438,8 @@ void input(){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
+            PTR=generateRandom();
+            PTR*=10;
             PCB.TTL=stoi(text.substr(8,4));
             cout<<"TTL: "<<text.substr(8,4)<<endl;
             PCB.TLL=stoi(text.substr(12,4));
@@ -380,6 +452,7 @@ void input(){
             row=0;
         }
         else if(str=="$DTA"){
+            cout<<"PTR: "<<PTR<<endl;
             execute();
             prog=false;
         }
@@ -394,6 +467,15 @@ void input(){
         else{
             if(prog){
                 int dataIndex=0;
+                row=generateRandom();
+                cout<<"Row: "<<row<<" Cards: "<<cards<<endl;
+                mainMemory[PTR+cards][0]='0';
+                mainMemory[PTR+cards][1]=cards+'0';
+                mainMemory[PTR+cards][2]=row/10+'0';
+                mainMemory[PTR+cards][3]=row%10+'0';
+                //cout<<"Logical Address: "<<mainMemory[PTR+cards][0]+" "<<mainMemory[PTR+cards][1]+" Real Address: "<<mainMemory[PTR+cards][2]+" "<<mainMemory[PTR+cards][3]<<endl;
+                row*=10;
+                ++cards;
                 while(dataIndex<text.size()){
                     mainMemory[row][col++]=text[dataIndex++];
                     if(text[dataIndex-1]=='H' && col==1){
