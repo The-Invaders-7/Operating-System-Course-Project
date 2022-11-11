@@ -13,6 +13,7 @@ int SI=0;
 
 ifstream myFile("Input.txt");
 
+
 void mainMemoryPrint(){
     for(int i=0;i<100;i++){
         if(i%10==0){
@@ -67,9 +68,10 @@ void readData(int memoryLocation){
     int col=0;
     string text;
     getline(myFile,text);
-    cout<<text;
-    while(dataIndex<40 && dataIndex<text.size()){
-        mainMemory[row][col++]=text[dataIndex++];
+    cout<<text<<endl;
+    std::vector<char> buffer(text.begin(),text.end()); 
+    while(dataIndex<40 && dataIndex<buffer.size()){
+        mainMemory[row][col++]=buffer[dataIndex++];
         if(col==4){
             col=0;
             row++;
@@ -214,12 +216,15 @@ void input(){
     
     bool prog=false;
     string text;
-    
+    int col=0;
+    int row=0;
     while (getline(myFile,text)){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
             prog=true;
+            col=0;
+            row=0;
         }
         else if(str=="$DTA"){
             execute();
@@ -235,10 +240,8 @@ void input(){
         }
         else{
             if(prog){
-                int col=0;
-                int row=0;
                 int dataIndex=0;
-                while(dataIndex<text.size()-1){
+                while(dataIndex<text.size()){
                     mainMemory[row][col++]=text[dataIndex++];
                     if(text[dataIndex-1]=='H'){
                         mainMemory[row][col++]='0';
