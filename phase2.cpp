@@ -15,7 +15,7 @@ int TI=0;
 int PTR=0;
 set<int> st;
 string EM;
-
+set<char> validOpcodeChar = {'H', 'G', 'P', 'L', 'S', 'B', 'C'};
 
 class ProcessControlBlock{
     public:
@@ -60,7 +60,9 @@ void load(){
     reg.assign(4,'#');
     buffer.assign(40,'#');
     toggle=false;
+    EM="";
     PI=0;
+    PTR=0;
     SI=0;
     TI=0;
     st.clear();
@@ -98,7 +100,7 @@ void readData(int memoryLocation){
     int col=0;
     string text;
     getline(myFile,text);
-    cout<<text<<endl;
+    cout<<"GD: "<<text<<endl;
     std::vector<char> buffer(text.begin(),text.end()); 
     while(dataIndex<40 && dataIndex<buffer.size()){
         mainMemory[row][col++]=buffer[dataIndex++];
@@ -136,6 +138,7 @@ void writeData(int memoryLocation){
 }
 
 void loadReg(int memoryLocation){
+    cout<<"register content: \n";
     for(int col=0;col<4;col++){         
         reg[col]=mainMemory[memoryLocation][col];
     }
@@ -148,6 +151,7 @@ void loadReg(int memoryLocation){
 }
 
 void storeReg(int memoryLocation){
+    cout<<"Storing content from register to: "<<memoryLocation<<"\n";
     for(int col=0;col<4;col++){         
         mainMemory[memoryLocation][col]=reg[col];
     }
@@ -330,6 +334,11 @@ void execute(ProcessControlBlock PCB){
         }
         cout<<"\n";
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
+        if(validOpcodeChar.find(IR[0])==validOpcodeChar.end()){
+            PI=1;
+            MOS(memoryLocation);
+            break;
+        }
         if(addressMap(memoryLocation)==-1){
             PI = 3;
             MOS(memoryLocation);
@@ -344,6 +353,7 @@ void execute(ProcessControlBlock PCB){
                 break;
             }
             cout<<"TTC: "<<PCB.TTC<<"\n";
+            PI=0;
         }
         cout<<memoryLocation<<" ,";
         memoryLocation = addressMap(memoryLocation);
@@ -358,6 +368,7 @@ void execute(ProcessControlBlock PCB){
             }
             cout<<"TTC: "<<PCB.TTC<<"\n";
             MOS(memoryLocation);
+            SI=0;
         }
         else if(IR[0]=='P' && IR[1]=='D'){
             SI=2;
@@ -379,10 +390,11 @@ void execute(ProcessControlBlock PCB){
                 MOS(memoryLocation);
                 break;
             }
+            cout<<"Load\n";
             loadReg(memoryLocation);
         }
         else if(IR[0]=='S' && IR[1]=='R'){
-            PCB.TTC+=1;
+            PCB.TTC+=2;
             if(PCB.TTC > PCB.TTL){
                 TI=2;
                 MOS(memoryLocation);
@@ -412,15 +424,13 @@ void execute(ProcessControlBlock PCB){
             SI=3;
             MOS(memoryLocation);
             break;
-        }else{
-            PI=1;
-            MOS(memoryLocation);
-            break;
         }
     }
     // lines of appropriate terminating message
     FILE* file = fopen("Output.txt", "a");
-    for(auto &i:EM){
+    string jobID = "jobID: "+to_string(PCB.jobID)+", status: ";
+    jobID+=EM;
+    for(auto &i:jobID){
         fprintf(file, "%c",i);
     }
     fprintf(file, "%c",'\n');
@@ -439,6 +449,7 @@ void input(){
         cout<<"Text:"<<text<<endl;
         string str=text.substr(0,4);
         if(str=="$AMJ"){
+            load();
             prog=true;
             col=0;
             row=0;
@@ -458,6 +469,7 @@ void input(){
             prog=false;
         }
         else if(str=="$END"){
+            mainMemoryPrint();
             FILE* file = fopen("Output.txt", "a");
             fprintf(file, "%c",'\n');
             fprintf(file, "%c",'\n');

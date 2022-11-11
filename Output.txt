@@ -1,4 +1,75 @@
-Operation Code Error
+Hello World
+jobID: 1, status: No Error
+
+
+
+
+jobID: 2, status: Time Limit Exceeded
+
+
+
+
+SAME
+jobID: 3, status: No Error
+
+
+
+
+   *
+  ***
+ *****
+*******
+jobID: 4, status: No Error
+
+
+
+
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+jobID: 5, status: No Error
+
+
+
+
+****
+*  *
+*  *
+****
+jobID: 6, status: No Error
+
+
+
+
+*
+ *
+  *
+   *
+  *
+ *
+*
+jobID: 7, status: No Error
+
+
+
+
+*
+jobID: 8, status: Line Limit Exceeded
+
+
+
+
+jobID: 9, status: Operation Code Error
+
+
+
+
+Phase II is Completed:)
+jobID: 10, status: No Error
 
 
 
