@@ -3,19 +3,23 @@
 #include<fstream>
 using namespace std;
 
-vector<vector<char>> mainMemory(100,vector<char> (4));
+vector<vector<char>> mainMemory(300,vector<char> (4));
 vector<char> IR(4);
-vector<int> IC(2);
+vector<int> IC(2, 0);
 vector<char> reg(4);
 vector<char> buffer(40);
 bool toggle=false;
 int SI=0;
+int PI=0;
+int TI=0;
+int PTR=0;
+set<int> st;
+int EM;
 
 ifstream myFile("Input.txt");
 
-
 void mainMemoryPrint(){
-    for(int i=0;i<100;i++){
+    for(int i=0;i<300;i++){
         if(i%10==0){
             cout<<"Block "<<(i/10+1)<<": ";
             cout<<endl;
@@ -27,15 +31,19 @@ void mainMemoryPrint(){
         cout<<endl;
     }
 }
+
 void load(){
-    mainMemory.assign(100,vector<char> (4));
+    mainMemory.assign(300,vector<char> (4));
     IR.assign(4,'#');
     IC.assign(2,0);
     reg.assign(4,'#');
     buffer.assign(40,'#');
     toggle=false;
-    mainMemoryPrint();
+    PI=0;
+    SI=0;
+    TI=0;
 }
+
 void printPartMemory(int start){
     cout<<"Block "<<start/10<<endl;
     for(int i=start;i<start+10;i++){
@@ -45,8 +53,8 @@ void printPartMemory(int start){
         }
         cout<<endl;
     }
-    
 }
+
 void increment(){
     if(IC[1]<9){
         IC[1]=IC[1]+1;
@@ -60,8 +68,8 @@ void increment(){
     }
     cout<<"Instruction Counter: "<<IC[0]<<" "<<IC[1]<<endl;
 }
+
 void readData(int memoryLocation){
-    
     int dataIndex=0;
     memoryLocation=(memoryLocation/10)*10;
     int row=memoryLocation;
@@ -79,7 +87,6 @@ void readData(int memoryLocation){
     }
     increment();
     printPartMemory(memoryLocation);
-    
 }
 
 void writeData(int memoryLocation){
@@ -104,7 +111,6 @@ void writeData(int memoryLocation){
     fprintf(file, "%c",'\n');
     fclose(file);
     increment();
-    
 }
 
 void loadReg(int memoryLocation){
@@ -118,6 +124,7 @@ void loadReg(int memoryLocation){
     cout<<endl;
     increment();
 }
+
 void storeReg(int memoryLocation){
     for(int col=0;col<4;col++){         
         mainMemory[memoryLocation][col]=reg[col];
@@ -129,6 +136,7 @@ void storeReg(int memoryLocation){
     cout<<endl;
     increment();
 }
+
 void compare(int memoryLocation){
     increment();
     for(int col=0;col<4;col++){
@@ -138,6 +146,7 @@ void compare(int memoryLocation){
     }
     toggle=true;
 }
+
 void branch(int memoryLocation){
     if(toggle){
         IC[0]=memoryLocation/10;
@@ -147,10 +156,59 @@ void branch(int memoryLocation){
         increment();   
     }
 }
+
 void halt(){
     load();
 }
+
+int generateRandom(){
+    srand((unsigned)time(0));
+    int random = rand()%30;
+    while(st.find(random)!=st.end()){
+        srand((unsigned)time(0));
+        random = rand()%30;
+    }
+    st.insert(random);
+    return random;
+}
+
+void allocate(int virtualMemory){
+    int newBlock = generateRandom();
+    string s = to_string(newBlock);
+    cout<<"new block: "<<newBlock<<"\n";
+    if(s.length()==2){
+        mainMemory[PTR+virtualMemory/10][2] = s[0];
+        mainMemory[PTR+virtualMemory/10][3] = s[1];
+    }else{
+        mainMemory[PTR+virtualMemory/10][2] = '0';
+        mainMemory[PTR+virtualMemory/10][3] = s[0];
+    }
+}
+
+int addressMap(int virtualMemory){
+    int PTE = PTR+virtualMemory/10;
+    cout<<"PTE: "<<PTE<<"\n";
+    int realAddress = ((mainMemory[PTE][2]-'0')*10 + (mainMemory[PTE][3]-'0'))*10 + virtualMemory%10;
+    return (realAddress > 299 or realAddress < 0) ? -1:realAddress;
+}
+
+bool pageFault(int memoryLocation){
+    if((IR[0]=='G' and IR[1]=='D') or (IR[0]=='S' and IR[1]=='R')){
+        cout<<"Valid Page Fault\n";
+        allocate(memoryLocation);
+        printPartMemory(PTR);
+        return true;
+    }
+    cout<<"Invalid Page Fault\n";
+    return false;
+}
+
 void MOS(int memoryLocation){
+    if(PI==3){
+        bool valid = pageFault(memoryLocation);
+        if(!valid) EM=6;
+        PI = 0;
+    }
     if(SI==1){
         readData(memoryLocation);
     }
@@ -163,24 +221,39 @@ void MOS(int memoryLocation){
     SI=0;
     return;
 }
+
 void bufferPrint(){
     for(int i=0;i<40;i++){
         cout<<buffer[i];
     }
     cout<<endl;
 }
+
 void execute(){
-    
-    mainMemoryPrint();
     while(true){
         cout<<endl;
-        IR=mainMemory[IC[0]*10+IC[1]];
+        int virtualAddress = IC[0]*10+IC[1];
+        int realAddress = addressMap(virtualAddress);
+        cout<<"RA: "<<realAddress<<", VA: "<<virtualAddress<<"\n";
+        cout<<"IC: "<<IC[0]<<IC[1]<<"\n";
+        IR=mainMemory[realAddress];
         cout<<"Instruction: ";
         for(int i=0;i<4;i++){
             cout<<IR[i];
         }
         cout<<endl;
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
+        if(addressMap(memoryLocation)==-1){
+            PI = 3;
+            MOS(memoryLocation);
+            if(EM==6){
+                break;
+            }
+            PI=0;
+        }
+        cout<<memoryLocation<<" ,";
+        memoryLocation = addressMap(memoryLocation);
+        cout<<"Address Map: "<<memoryLocation<<"\n";
         if(IR[0]=='G' && IR[1]=='D'){
             SI=1;
             MOS(memoryLocation);
@@ -213,7 +286,6 @@ void execute(){
 
 
 void input(){
-    
     bool prog=false;
     string text;
     int col=0;
@@ -225,8 +297,12 @@ void input(){
             prog=true;
             col=0;
             row=0;
+            PTR = generateRandom();
+            PTR*=10;
+            cout<<"PTR: "<<PTR<<"\n";
         }
         else if(str=="$DTA"){
+            mainMemoryPrint();
             execute();
             prog=false;
             
@@ -241,16 +317,34 @@ void input(){
         else{
             if(prog){
                 int dataIndex=0;
+                bool appendBlock=true;
+                int currentBlock;
                 while(dataIndex<text.size()){
-                    mainMemory[row][col++]=text[dataIndex++];
+                    if(appendBlock){
+                        int newBlock = generateRandom();
+                        string s = to_string(newBlock);
+                        cout<<"new block: "<<newBlock<<"\n";
+                        if(s.length()==2){
+                            mainMemory[PTR+row/10][2] = s[0];
+                            mainMemory[PTR+row/10][3] = s[1];
+                        }else{
+                            mainMemory[PTR+row/10][3] = s[0];
+                        }
+                        currentBlock = newBlock*10;
+                        appendBlock = false;
+                    }
+                    mainMemory[currentBlock+row%10][col++]=text[dataIndex++];
                     if(text[dataIndex-1]=='H'){
-                        mainMemory[row][col++]='0';
-                        mainMemory[row][col++]='0';
-                        mainMemory[row][col++]='0';
+                        mainMemory[currentBlock+row%10][col++]='0';
+                        mainMemory[currentBlock+row%10][col++]='0';
+                        mainMemory[currentBlock+row%10][col++]='0';
                     }
                     if(col==4){
                         col=0;
                         row++;
+                        if(row%10==0){
+                            appendBlock = true;
+                        }
                     }
                 }
             }
