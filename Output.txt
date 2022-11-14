@@ -1,16 +1,34 @@
 Hello World
 jobID: 1, status: No Error
 
+SI=3
+PI=0
+TI=0
+TTC=05
+TLC=01
+
 
 
 
 jobID: 2, status: Time Limit Exceeded
+
+SI=1
+PI=0
+TI=2
+TTC=04
+TLC=00
 
 
 
 
 SAME
 jobID: 3, status: No Error
+
+SI=3
+PI=0
+TI=0
+TTC=20
+TLC=01
 
 
 
@@ -20,6 +38,12 @@ jobID: 3, status: No Error
  *****
 *******
 jobID: 4, status: No Error
+
+SI=3
+PI=0
+TI=0
+TTC=62
+TLC=04
 
 
 
@@ -33,6 +57,12 @@ jobID: 4, status: No Error
    *
 jobID: 5, status: No Error
 
+SI=3
+PI=0
+TI=0
+TTC=65
+TLC=07
+
 
 
 
@@ -41,6 +71,12 @@ jobID: 5, status: No Error
 *  *
 ****
 jobID: 6, status: No Error
+
+SI=3
+PI=0
+TI=0
+TTC=50
+TLC=04
 
 
 
@@ -54,22 +90,56 @@ jobID: 6, status: No Error
 *
 jobID: 7, status: No Error
 
+SI=3
+PI=0
+TI=0
+TTC=55
+TLC=07
+
 
 
 
 *
 jobID: 8, status: Line Limit Exceeded
 
+SI=2
+PI=0
+TI=0
+TTC=50
+TLC=02
+
 
 
 
 jobID: 9, status: Operation Code Error
 
+SI=0
+PI=1
+TI=0
+TTC=00
+TLC=00
 
 
 
-Phase II is Completed:)
-jobID: 10, status: No Error
+
+jobID: 10, status: Operation Code Error
+
+SI=0
+PI=1
+TI=0
+TTC=00
+TLC=00
+
+
+
+
+jobID: 11, status: Invalid Page Fault
+
+SI=0
+PI=3
+TI=0
+TTC=08
+TLC=00
 
 
 

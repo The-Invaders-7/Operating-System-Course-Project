@@ -15,7 +15,7 @@ int TI=0;
 int PTR=0;
 set<int> st;
 string EM;
-set<char> validOpcodeChar = {'H', 'G', 'P', 'L', 'S', 'B', 'C'};
+set<string> validOpcodeChar = {"GD", "SR", "H", "LR", "BT", "CR", "PD"};
 
 class ProcessControlBlock{
     public:
@@ -314,6 +314,41 @@ void bufferPrint(){
     cout<<endl;
 }
 
+void printFile(ProcessControlBlock PCB, FILE* file){
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'S');
+    fprintf(file, "%c",'I');
+    fprintf(file, "%c",'=');
+    fprintf(file, "%c",SI+'0');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'P');
+    fprintf(file, "%c",'I');
+    fprintf(file, "%c",'=');
+    fprintf(file, "%c",PI+'0');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'T');
+    fprintf(file, "%c",'I');
+    fprintf(file, "%c",'=');
+    fprintf(file, "%c",TI+'0');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'T');
+    fprintf(file, "%c",'T');
+    fprintf(file, "%c",'C');
+    fprintf(file, "%c",'=');
+    fprintf(file, "%c",PCB.TTC/10+'0');
+    fprintf(file, "%c",PCB.TTC%10+'0');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'T');
+    fprintf(file, "%c",'L');
+    fprintf(file, "%c",'C');
+    fprintf(file, "%c",'=');
+    fprintf(file, "%c",PCB.TLC/10+'0');
+    fprintf(file, "%c",PCB.TLC%10+'0');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'\n');
+    fprintf(file, "%c",'\n');
+}
+
 void execute(ProcessControlBlock PCB){
     while(true){
         cout<<"\n";
@@ -334,7 +369,15 @@ void execute(ProcessControlBlock PCB){
         }
         cout<<"\n";
         int memoryLocation=(IR[2]-'0')*10+(IR[3]-'0');
-        if(validOpcodeChar.find(IR[0])==validOpcodeChar.end()){
+        string ins="";
+        if(IR[0]=='H'){
+            ins+=IR[0];
+        }else{
+            ins+=IR[0];
+            ins+=IR[1];
+        }
+        if(validOpcodeChar.find(ins)==validOpcodeChar.end()){
+            cout<<ins<<"\n";
             PI=1;
             MOS(memoryLocation);
             break;
@@ -433,8 +476,10 @@ void execute(ProcessControlBlock PCB){
     for(auto &i:jobID){
         fprintf(file, "%c",i);
     }
-    fprintf(file, "%c",'\n');
-    fprintf(file, "%c",'\n');
+    printFile(PCB, file);
+    SI=0;
+    PI=0;
+    TI=0;
     fclose(file);
     load();
 }
