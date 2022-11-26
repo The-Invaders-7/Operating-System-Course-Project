@@ -82,34 +82,44 @@ void increment(){
     cout<<"Instruction Counter: "<<IC[0]<<" "<<IC[1]<<endl;
 }
 void terminate(int errorCode){
+    FILE* file = fopen("Output.txt", "a");
     if(errorCode==0){
         cout<<"No Error"<<endl;
+        fprintf(file, "%s","No Error");
         EM=0;
     }
     else if(errorCode==1){
         cout<<"Out of Data"<<endl;
+        fprintf(file, "%s","Out of Data");
         EM=1;
     }
     else if(errorCode==2){
         cout<<"Line Limit Exceeded"<<endl;
+        fprintf(file, "%s","Line Limit Exceeded");
         EM=2;
     }
     else if(errorCode==3){
         cout<<"Time Limit Exceeded"<<endl;
+        fprintf(file, "%s","Time Limit Exceeded");
         EM=3;
     }
     else if(errorCode==4){
         cout<<"Operation Code Error"<<endl;
+        fprintf(file, "%s","Operation Code Error");
         EM=4;
     }
     else if(errorCode==5){
         cout<<"Operand Error"<<endl;
+        fprintf(file, "%s","Operand Error");
         EM=5;
     }
     else if(errorCode==6){
         cout<<"Invalid Page Fault"<<endl;
+        fprintf(file, "%s","Invalid Page Fault");
         EM=6;
     }
+    fprintf(file, "%c",'\n');
+    fclose(file);
 }
 void readData(int memoryLocation){
     
@@ -242,11 +252,11 @@ void MOS(int memoryLocation){
         terminate(3);
         terminate(5);
     }
-    else if(SI==3 && TI==2){
-        terminate(3);
+    else if(PI==3 && TI==0){
+        terminate(6);
     }
-    else if(SI==3 && TI==2){
-        terminate(0);
+    else if(PI==3 && TI==2){
+        terminate(3);
     }
     SI=3;
     return;
