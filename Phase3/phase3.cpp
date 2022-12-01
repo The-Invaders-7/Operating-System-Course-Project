@@ -1016,7 +1016,7 @@ void IR2(){
         }
         MyFile<<"\n";
         // cout<<"InputBuffer "<<inputBuffer.size()<<" OutputBuffer "<<outputBuffer.size()<<" EmptyBuffer "<<emptyBuffer.size()<<endl;
-        FILE* file = fopen("Output1.txt", "a");
+        FILE* file = fopen("Output.txt", "a");
         int dataIndex=0;
         cout<<"File ";
         for(int i=0;i<ch2_temp.size();i++){
