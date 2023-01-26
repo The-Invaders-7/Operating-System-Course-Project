@@ -1,0 +1,721 @@
+CH1 started popped empty buffer at time 1 $AMJ000100800001
+CH1 ended added input buffer at time 5 $AMJ000100800001
+CH1 started popped empty buffer at time 6 GD10PD20H
+CH3 started popped input buffer started its operation on Input Spooling at time 6 $AMJ000100800001
+CH3 stopped Input Spooling added Empty Buffer at time 7 $AMJ000100800001
+PCB created
+CH1 ended added input buffer at time 10 GD10PD20H
+CH1 started popped empty buffer at time 11 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 11 GD10PD20H000
+CH3 stopped Input Spooling added Empty Buffer at time 12 GD10PD20H000
+CH1 ended added input buffer at time 15 $DTA
+CH1 started popped empty buffer at time 16 Hello World
+CH3 started popped input buffer started its operation on Input Spooling at time 16 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 17 $DTA
+CH1 ended added input buffer at time 20 Hello World
+CH1 started popped empty buffer at time 21 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 21 Hello World
+CH3 stopped Input Spooling added Empty Buffer at time 22 Hello World
+CH1 ended added input buffer at time 25 $END0001
+CH1 started popped empty buffer at time 26 $AMJ000200800004
+CH3 started popped input buffer started its operation on Input Spooling at time 26 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 27 $END0001
+CH3 started loading memory at time 28 GD10PD20H000
+CH3 stopped loading memory at time 29
+Execution starts at time 29
+CH1 ended added input buffer at time 30 $AMJ000200800004
+CH3 started I/O Read Operation using channel 3 at timer 30 Hello World
+CH1 started popped empty buffer at time 31 GD20GD30GD40GD50GD60CR30BT09PD40HPD50
+I_OQueue operation completed at time 31
+CH3 started popped input buffer started its operation on Input Spooling at time 32 $AMJ000200800004
+CH3 stopped Input Spooling added Empty Buffer at time 33 $AMJ000200800004
+PCB created
+CH3 started terminate Operation using channel 3 at timer 33 Invalid Page Fault
+Data IR PD20 IC 01
+
+ 
+Execution ends at time 33
+CH3 started popped empty buffer started its operation on Output Spooling at time 34 Invalid Page Fault
+CH1 ended added input buffer at time 35 GD20GD30GD40GD50GD60CR30BT09PD40HPD50
+CH3 stopped Output Spooling added Output Buffer at time 35 Invalid Page Fault
+CH2 started popped output buffer at time 36 Invalid Page Fault
+CH1 started popped empty buffer at time 36 H
+CH3 started popped input buffer started its operation on Input Spooling at time 36 GD20GD30GD40GD50GD60CR30BT09PD40H000PD50
+CH3 stopped Input Spooling added Empty Buffer at time 37 GD20GD30GD40GD50GD60CR30BT09PD40H000PD50
+CH2 stopped added empty buffer at time 37 Invalid Page Fault
+CH3 started popped empty buffer started its operation on Output Spooling at time 38 IR PD20 IC 01
+
+ 
+CH3 stopped Output Spooling added Output Buffer at time 39 IR PD20 IC 01
+
+ 
+CH2 started popped output buffer at time 40 IR PD20 IC 01
+
+ 
+CH1 ended added input buffer at time 40 H
+CH2 stopped added empty buffer at time 41 IR PD20 IC 01
+
+ 
+CH1 started popped empty buffer at time 41 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 41 H000
+CH3 stopped Input Spooling added Empty Buffer at time 42 H000
+CH1 ended added input buffer at time 45 $DTA
+CH1 started popped empty buffer at time 46 VIT
+CH3 started popped input buffer started its operation on Input Spooling at time 46 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 47 $DTA
+CH1 ended added input buffer at time 50 VIT
+CH1 started popped empty buffer at time 51 VIIT
+CH3 started popped input buffer started its operation on Input Spooling at time 51 VIT
+CH3 stopped Input Spooling added Empty Buffer at time 52 VIT
+CH1 ended added input buffer at time 55 VIIT
+CH1 started popped empty buffer at time 56 NOT SAME
+CH3 started popped input buffer started its operation on Input Spooling at time 56 VIIT
+CH3 stopped Input Spooling added Empty Buffer at time 57 VIIT
+CH1 ended added input buffer at time 60 NOT SAME
+CH1 started popped empty buffer at time 61 SAME
+CH3 started popped input buffer started its operation on Input Spooling at time 61 NOT SAME
+CH3 stopped Input Spooling added Empty Buffer at time 62 NOT SAME
+CH1 ended added input buffer at time 65 SAME
+CH1 started popped empty buffer at time 66 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 66 SAME
+CH3 stopped Input Spooling added Empty Buffer at time 67 SAME
+CH1 ended added input buffer at time 70 $END0001
+CH1 started popped empty buffer at time 71 $AMJ000300800004
+CH3 started popped input buffer started its operation on Input Spooling at time 71 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 72 $END0001
+CH3 started loading memory at time 73 GD20GD30GD40GD50GD60CR30BT09PD40H000PD50
+CH3 stopped loading memory at time 74
+CH1 ended added input buffer at time 75 $AMJ000300800004
+CH3 started loading memory at time 75 H000
+CH1 started popped empty buffer at time 76 GD20GD30GD40GD50LR20CR30BT09PD40HPD50
+CH3 stopped loading memory at time 76
+Execution starts at time 76
+CH3 started popped input buffer started its operation on Input Spooling at time 77 $AMJ000300800004
+CH3 stopped Input Spooling added Empty Buffer at time 78 $AMJ000300800004
+PCB created
+CH3 started I/O Read Operation using channel 3 at timer 79 VIT
+CH1 ended added input buffer at time 80 GD20GD30GD40GD50LR20CR30BT09PD40HPD50
+I_OQueue operation completed at time 80
+CH1 started popped empty buffer at time 81 H
+CH3 started popped input buffer started its operation on Input Spooling at time 81 GD20GD30GD40GD50LR20CR30BT09PD40H000PD50
+CH3 stopped Input Spooling added Empty Buffer at time 82 GD20GD30GD40GD50LR20CR30BT09PD40H000PD50
+CH3 started I/O Read Operation using channel 3 at timer 83 VIIT
+I_OQueue operation completed at time 84
+CH1 ended added input buffer at time 85 H
+CH3 started I/O Read Operation using channel 3 at timer 85 NOT SAME
+CH1 started popped empty buffer at time 86 $DTA
+I_OQueue operation completed at time 86
+CH3 started popped input buffer started its operation on Input Spooling at time 87 H000
+CH3 stopped Input Spooling added Empty Buffer at time 88 H000
+CH3 started I/O Read Operation using channel 3 at timer 89 SAME
+CH1 ended added input buffer at time 90 $DTA
+I_OQueue operation completed at time 90
+CH1 started popped empty buffer at time 91 VIT
+CH3 started popped input buffer started its operation on Input Spooling at time 91 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 92 $DTA
+CH3 started terminate Operation using channel 3 at timer 92 Out of Data
+Data IR GD60 IC 04
+
+ 
+Execution ends at time 92
+CH3 started popped empty buffer started its operation on Output Spooling at time 93 Out of Data
+CH3 stopped Output Spooling added Output Buffer at time 94 Out of Data
+CH2 started popped output buffer at time 95 Out of Data
+CH1 ended added input buffer at time 95 VIT
+CH3 started popped empty buffer started its operation on Output Spooling at time 95 IR GD60 IC 04
+
+ 
+CH2 stopped added empty buffer at time 96 Out of Data
+CH1 started popped empty buffer at time 96 VIT
+CH3 stopped Output Spooling added Output Buffer at time 96 IR GD60 IC 04
+
+ 
+CH3 started popped input buffer started its operation on Input Spooling at time 97 VIT
+CH2 started popped output buffer at time 97 IR GD60 IC 04
+
+ 
+CH3 stopped Input Spooling added Empty Buffer at time 98 VIT
+CH2 stopped added empty buffer at time 98 IR GD60 IC 04
+
+ 
+CH1 ended added input buffer at time 100 VIT
+CH1 started popped empty buffer at time 101 NOT SAME
+CH3 started popped input buffer started its operation on Input Spooling at time 101 VIT
+CH3 stopped Input Spooling added Empty Buffer at time 102 VIT
+CH1 ended added input buffer at time 105 NOT SAME
+CH1 started popped empty buffer at time 106 SAME
+CH3 started popped input buffer started its operation on Input Spooling at time 106 NOT SAME
+CH3 stopped Input Spooling added Empty Buffer at time 107 NOT SAME
+CH1 ended added input buffer at time 110 SAME
+CH1 started popped empty buffer at time 111 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 111 SAME
+CH3 stopped Input Spooling added Empty Buffer at time 112 SAME
+CH1 ended added input buffer at time 115 $END0001
+CH1 started popped empty buffer at time 116 $AMJ000400080020
+CH3 started popped input buffer started its operation on Input Spooling at time 116 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 117 $END0001
+CH3 started loading memory at time 118 GD20GD30GD40GD50LR20CR30BT09PD40H000PD50
+CH3 stopped loading memory at time 119
+CH1 ended added input buffer at time 120 $AMJ000400080020
+CH3 started loading memory at time 120 H000
+CH1 started popped empty buffer at time 121 GD30LR30PD30SR40SR41PD40SR50SR51SR52PD50
+CH3 stopped loading memory at time 121
+Execution starts at time 121
+CH3 started popped input buffer started its operation on Input Spooling at time 122 $AMJ000400080020
+CH3 stopped Input Spooling added Empty Buffer at time 123 $AMJ000400080020
+PCB created
+CH3 started I/O Read Operation using channel 3 at timer 124 VIT
+CH1 ended added input buffer at time 125 GD30LR30PD30SR40SR41PD40SR50SR51SR52PD50
+I_OQueue operation completed at time 125
+CH1 started popped empty buffer at time 126 SR60SR61SR62SR63PD60SR70SR71SR72SR73SR74
+CH3 started popped input buffer started its operation on Input Spooling at time 126 GD30LR30PD30SR40SR41PD40SR50SR51SR52PD50
+CH3 stopped Input Spooling added Empty Buffer at time 127 GD30LR30PD30SR40SR41PD40SR50SR51SR52PD50
+CH3 started I/O Read Operation using channel 3 at timer 128 VIT
+I_OQueue operation completed at time 129
+CH1 ended added input buffer at time 130 SR60SR61SR62SR63PD60SR70SR71SR72SR73SR74
+CH3 started I/O Read Operation using channel 3 at timer 130 NOT SAME
+CH1 started popped empty buffer at time 131 PD70H
+I_OQueue operation completed at time 131
+CH3 started popped input buffer started its operation on Input Spooling at time 132 SR60SR61SR62SR63PD60SR70SR71SR72SR73SR74
+CH3 stopped Input Spooling added Empty Buffer at time 133 SR60SR61SR62SR63PD60SR70SR71SR72SR73SR74
+CH3 started I/O Read Operation using channel 3 at timer 134 SAME
+CH1 ended added input buffer at time 135 PD70H
+I_OQueue operation completed at time 135
+CH1 started popped empty buffer at time 136 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 136 PD70H000
+CH3 stopped Input Spooling added Empty Buffer at time 137 PD70H000
+CH3 started I/O Write Operation using channel 3 at timer 139 SAME
+CH1 ended added input buffer at time 140 $DTA
+I_OQueue operation completed at time 140
+CH3 started terminate Operation using channel 3 at timer 140 No Error
+Data IR H000 IC 10
+
+ 
+Execution ends at time 140
+CH1 started popped empty buffer at time 141 *
+CH3 started popped input buffer started its operation on Input Spooling at time 141 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 142 $DTA
+CH3 started popped empty buffer started its operation on Output Spooling at time 143 SAME
+CH3 stopped Output Spooling added Output Buffer at time 144 SAME
+CH2 started popped output buffer at time 145 SAME
+CH1 ended added input buffer at time 145 *
+CH3 started popped empty buffer started its operation on Output Spooling at time 145 No Error
+CH2 stopped added empty buffer at time 146 SAME
+CH1 started popped empty buffer at time 146 $END0001
+CH3 stopped Output Spooling added Output Buffer at time 146 No Error
+CH3 started popped input buffer started its operation on Input Spooling at time 147 *
+CH2 started popped output buffer at time 147 No Error
+CH3 stopped Input Spooling added Empty Buffer at time 148 *
+CH2 stopped added empty buffer at time 148 No Error
+CH3 started popped empty buffer started its operation on Output Spooling at time 149 IR H000 IC 10
+
+ 
+CH1 ended added input buffer at time 150 $END0001
+CH3 stopped Output Spooling added Output Buffer at time 150 IR H000 IC 10
+
+ 
+CH2 started popped output buffer at time 151 IR H000 IC 10
+
+ 
+CH1 started popped empty buffer at time 151 $AMJ000500800020
+CH3 started popped input buffer started its operation on Input Spooling at time 151 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 152 $END0001
+CH2 stopped added empty buffer at time 152 IR H000 IC 10
+
+ 
+CH3 started loading memory at time 154 GD30LR30PD30SR40SR41PD40SR50SR51SR52PD50
+CH1 ended added input buffer at time 155 $AMJ000500800020
+CH3 stopped loading memory at time 155
+CH1 started popped empty buffer at time 156 GD80GH90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 started popped input buffer started its operation on Input Spooling at time 156 $AMJ000500800020
+CH3 stopped Input Spooling added Empty Buffer at time 157 $AMJ000500800020
+PCB created
+CH3 started loading memory at time 158 SR60SR61SR62SR63PD60SR70SR71SR72SR73SR74
+CH3 stopped loading memory at time 159
+CH1 ended added input buffer at time 160 GD80GH90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 started loading memory at time 160 PD70H000
+CH1 started popped empty buffer at time 161 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 stopped loading memory at time 161
+Execution starts at time 161
+CH3 started popped input buffer started its operation on Input Spooling at time 162 GD80GH00090LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 stopped Input Spooling added Empty Buffer at time 163 GD80GH00090LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 started I/O Read Operation using channel 3 at timer 164 *
+CH1 ended added input buffer at time 165 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+I_OQueue operation completed at time 165
+CH1 started popped empty buffer at time 166 SR72SR73SR74SR75SR76PD80PD50PD60PD70H
+CH3 started popped input buffer started its operation on Input Spooling at time 166 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 stopped Input Spooling added Empty Buffer at time 167 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 started I/O Write Operation using channel 3 at timer 168 *
+I_OQueue operation completed at time 169
+CH1 ended added input buffer at time 170 SR72SR73SR74SR75SR76PD80PD50PD60PD70H
+CH1 started popped empty buffer at time 171 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 171 SR72SR73SR74SR75SR76PD80PD50PD60PD70H000
+CH3 stopped Input Spooling added Empty Buffer at time 172 SR72SR73SR74SR75SR76PD80PD50PD60PD70H000
+CH3 started terminate Operation using channel 3 at timer 173 Time Limit Exceeded
+Data IR PD40 IC 05
+
+ 
+Execution ends at time 173
+CH3 started popped empty buffer started its operation on Output Spooling at time 174 *
+CH1 ended added input buffer at time 175 $DTA
+CH3 stopped Output Spooling added Output Buffer at time 175 *
+CH2 started popped output buffer at time 176 *
+CH1 started popped empty buffer at time 176  
+CH3 started popped input buffer started its operation on Input Spooling at time 176 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 177 $DTA
+CH2 stopped added empty buffer at time 177 *
+CH3 started popped empty buffer started its operation on Output Spooling at time 178 Time Limit Exceeded
+CH3 stopped Output Spooling added Output Buffer at time 179 Time Limit Exceeded
+CH2 started popped output buffer at time 180 Time Limit Exceeded
+CH1 ended added input buffer at time 180  
+CH3 started popped empty buffer started its operation on Output Spooling at time 180 IR PD40 IC 05
+
+ 
+CH2 stopped added empty buffer at time 181 Time Limit Exceeded
+CH1 started popped empty buffer at time 181 *
+CH3 stopped Output Spooling added Output Buffer at time 181 IR PD40 IC 05
+
+ 
+CH3 started popped input buffer started its operation on Input Spooling at time 182  
+CH2 started popped output buffer at time 182 IR PD40 IC 05
+
+ 
+CH3 stopped Input Spooling added Empty Buffer at time 183  
+CH2 stopped added empty buffer at time 183 IR PD40 IC 05
+
+ 
+CH1 ended added input buffer at time 185 *
+CH1 started popped empty buffer at time 186 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 186 *
+CH3 stopped Input Spooling added Empty Buffer at time 187 *
+CH1 ended added input buffer at time 190 $END0001
+CH1 started popped empty buffer at time 191 $AMJ000600800010
+CH3 started popped input buffer started its operation on Input Spooling at time 191 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 192 $END0001
+CH3 started loading memory at time 193 GD80GH00090LR80SR81SR82SR50SR51SR61LR90S
+CH3 stopped loading memory at time 194
+CH1 ended added input buffer at time 195 $AMJ000600800010
+CH3 started loading memory at time 195 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH1 started popped empty buffer at time 196 GD80GD90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 stopped loading memory at time 196
+CH3 started popped input buffer started its operation on Input Spooling at time 197 $AMJ000600800010
+CH3 stopped Input Spooling added Empty Buffer at time 198 $AMJ000600800010
+PCB created
+CH3 started loading memory at time 199 SR72SR73SR74SR75SR76PD80PD50PD60PD70H000
+CH1 ended added input buffer at time 200 GD80GD90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 stopped loading memory at time 200
+Execution starts at time 200
+CH1 started popped empty buffer at time 201 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 started popped input buffer started its operation on Input Spooling at time 201 GD80GD90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 stopped Input Spooling added Empty Buffer at time 202 GD80GD90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 started I/O Read Operation using channel 3 at timer 203  
+I_OQueue operation completed at time 204
+CH1 ended added input buffer at time 205 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 started terminate Operation using channel 3 at timer 205 Operation Code Error
+Data IR GH00 IC 01
+
+ 
+Execution ends at time 205
+CH1 started popped empty buffer at time 206 SR72SR73SR74SR75SR76PD80PD50PD60PD70PD60
+CH3 started popped input buffer started its operation on Input Spooling at time 206 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 stopped Input Spooling added Empty Buffer at time 207 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH3 started popped empty buffer started its operation on Output Spooling at time 208 Operation Code Error
+CH3 stopped Output Spooling added Output Buffer at time 209 Operation Code Error
+CH2 started popped output buffer at time 210 Operation Code Error
+CH1 ended added input buffer at time 210 SR72SR73SR74SR75SR76PD80PD50PD60PD70PD60
+CH3 started popped empty buffer started its operation on Output Spooling at time 210 IR GH00 IC 01
+
+ 
+CH2 stopped added empty buffer at time 211 Operation Code Error
+CH1 started popped empty buffer at time 211 PD50PD80H
+CH3 stopped Output Spooling added Output Buffer at time 211 IR GH00 IC 01
+
+ 
+CH3 started popped input buffer started its operation on Input Spooling at time 212 SR72SR73SR74SR75SR76PD80PD50PD60PD70PD60
+CH2 started popped output buffer at time 212 IR GH00 IC 01
+
+ 
+CH3 stopped Input Spooling added Empty Buffer at time 213 SR72SR73SR74SR75SR76PD80PD50PD60PD70PD60
+CH2 stopped added empty buffer at time 213 IR GH00 IC 01
+
+ 
+CH1 ended added input buffer at time 215 PD50PD80H
+CH1 started popped empty buffer at time 216 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 216 PD50PD80H000
+CH3 stopped Input Spooling added Empty Buffer at time 217 PD50PD80H000
+CH1 ended added input buffer at time 220 $DTA
+CH1 started popped empty buffer at time 221  
+CH3 started popped input buffer started its operation on Input Spooling at time 221 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 222 $DTA
+CH1 ended added input buffer at time 225  
+CH1 started popped empty buffer at time 226 *
+CH3 started popped input buffer started its operation on Input Spooling at time 226  
+CH3 stopped Input Spooling added Empty Buffer at time 227  
+CH1 ended added input buffer at time 230 *
+CH1 started popped empty buffer at time 231 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 231 *
+CH3 stopped Input Spooling added Empty Buffer at time 232 *
+CH1 ended added input buffer at time 235 $END0001
+CH1 started popped empty buffer at time 236 $AMJ000700800020
+CH3 started popped input buffer started its operation on Input Spooling at time 236 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 237 $END0001
+CH3 started loading memory at time 238 GD80GD90LR80SR81SR82SR50SR51SR61LR90SR83
+CH3 stopped loading memory at time 239
+CH1 ended added input buffer at time 240 $AMJ000700800020
+CH3 started loading memory at time 240 SR52SR53SR54SR62SR63SR64SR65SR66SR70SR71
+CH1 started popped empty buffer at time 241 GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40
+CH3 stopped loading memory at time 241
+CH3 started popped input buffer started its operation on Input Spooling at time 242 $AMJ000700800020
+CH3 stopped Input Spooling added Empty Buffer at time 243 $AMJ000700800020
+PCB created
+CH3 started loading memory at time 244 SR72SR73SR74SR75SR76PD80PD50PD60PD70PD60
+CH1 ended added input buffer at time 245 GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40
+CH3 stopped loading memory at time 245
+CH1 started popped empty buffer at time 246 SR50SR51PD50SR60PD60H
+CH3 started popped input buffer started its operation on Input Spooling at time 246 GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40
+CH3 stopped Input Spooling added Empty Buffer at time 247 GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40
+CH3 started loading memory at time 248 PD50PD80H000
+CH3 stopped loading memory at time 249
+Execution starts at time 249
+CH1 ended added input buffer at time 250 SR50SR51PD50SR60PD60H
+CH3 started I/O Read Operation using channel 3 at timer 250  
+CH1 started popped empty buffer at time 251 $DTA
+I_OQueue operation completed at time 251
+CH3 started popped input buffer started its operation on Input Spooling at time 252 SR50SR51PD50SR60PD60H000
+CH3 stopped Input Spooling added Empty Buffer at time 253 SR50SR51PD50SR60PD60H000
+CH3 started I/O Read Operation using channel 3 at timer 254 *
+CH1 ended added input buffer at time 255 $DTA
+I_OQueue operation completed at time 255
+CH1 started popped empty buffer at time 256 *
+CH3 started popped input buffer started its operation on Input Spooling at time 256 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 257 $DTA
+CH1 ended added input buffer at time 260 *
+CH1 started popped empty buffer at time 261 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 261 *
+CH3 stopped Input Spooling added Empty Buffer at time 262 *
+CH1 ended added input buffer at time 265 $END0001
+CH1 started popped empty buffer at time 266 $AMJ000800800020
+CH3 started popped input buffer started its operation on Input Spooling at time 266 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 267 $END0001
+CH1 ended added input buffer at time 270 $AMJ000800800020
+CH1 started popped empty buffer at time 271 GD90GD80LR80SR81SR82SR83SR50SR51SR52SR53
+CH3 started popped input buffer started its operation on Input Spooling at time 271 $AMJ000800800020
+CH3 stopped Input Spooling added Empty Buffer at time 272 $AMJ000800800020
+PCB created
+CH1 ended added input buffer at time 275 GD90GD80LR80SR81SR82SR83SR50SR51SR52SR53
+CH1 started popped empty buffer at time 276 SR60SR63SR70SR73LR90SR61SR62SR71SR72PD50
+CH3 started popped input buffer started its operation on Input Spooling at time 276 GD90GD80LR80SR81SR82SR83SR50SR51SR52SR53
+CH3 stopped Input Spooling added Empty Buffer at time 277 GD90GD80LR80SR81SR82SR83SR50SR51SR52SR53
+CH1 ended added input buffer at time 280 SR60SR63SR70SR73LR90SR61SR62SR71SR72PD50
+CH1 started popped empty buffer at time 281 PD60PD70PD80H
+CH3 started popped input buffer started its operation on Input Spooling at time 281 SR60SR63SR70SR73LR90SR61SR62SR71SR72PD50
+CH3 stopped Input Spooling added Empty Buffer at time 282 SR60SR63SR70SR73LR90SR61SR62SR71SR72PD50
+CH1 ended added input buffer at time 285 PD60PD70PD80H
+CH1 started popped empty buffer at time 286 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 286 PD60PD70PD80H000
+CH3 stopped Input Spooling added Empty Buffer at time 287 PD60PD70PD80H000
+CH1 ended added input buffer at time 290 $DTA
+CH1 started popped empty buffer at time 291  
+CH3 started popped input buffer started its operation on Input Spooling at time 291 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 292 $DTA
+CH1 ended added input buffer at time 295  
+CH1 started popped empty buffer at time 296 *
+CH3 started popped input buffer started its operation on Input Spooling at time 296  
+CH3 stopped Input Spooling added Empty Buffer at time 297  
+CH1 ended added input buffer at time 300 *
+CH3 started I/O Write Operation using channel 3 at timer 300    *
+CH1 started popped empty buffer at time 301 $END0001
+I_OQueue operation completed at time 301
+CH3 started popped input buffer started its operation on Input Spooling at time 302 *
+CH3 stopped Input Spooling added Empty Buffer at time 303 *
+CH3 started I/O Write Operation using channel 3 at timer 304   ***
+CH1 ended added input buffer at time 305 $END0001
+I_OQueue operation completed at time 305
+CH1 started popped empty buffer at time 306 $AMJ00100080000
+CH3 started popped input buffer started its operation on Input Spooling at time 306 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 307 $END0001
+CH3 started I/O Write Operation using channel 3 at timer 308  *****
+I_OQueue operation completed at time 309
+CH1 ended added input buffer at time 310 $AMJ00100080000
+CH3 started I/O Write Operation using channel 3 at timer 310 *******
+CH1 started popped empty buffer at time 311 GD10GD20LR20SR16PD10H
+I_OQueue operation completed at time 311
+CH3 started popped input buffer started its operation on Input Spooling at time 312 $AMJ00100080000
+CH3 stopped Input Spooling added Empty Buffer at time 313 $AMJ00100080000
+PCB created
+CH3 started I/O Write Operation using channel 3 at timer 314  *****
+CH1 ended added input buffer at time 315 GD10GD20LR20SR16PD10H
+I_OQueue operation completed at time 315
+CH1 started popped empty buffer at time 316 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 316 GD10GD20LR20SR16PD10H000
+CH3 stopped Input Spooling added Empty Buffer at time 317 GD10GD20LR20SR16PD10H000
+CH3 started I/O Write Operation using channel 3 at timer 318   ***
+I_OQueue operation completed at time 319
+CH1 ended added input buffer at time 320 $DTA
+CH3 started I/O Write Operation using channel 3 at timer 320    *
+CH1 started popped empty buffer at time 321 My favourite subject is 
+I_OQueue operation completed at time 321
+CH3 started terminate Operation using channel 3 at timer 321 No Error
+Data IR H000 IC 32
+
+ 
+Execution ends at time 321
+CH3 started popped input buffer started its operation on Input Spooling at time 322 $DTA
+CH3 stopped Input Spooling added Empty Buffer at time 323 $DTA
+CH3 started popped empty buffer started its operation on Output Spooling at time 324    *
+CH1 ended added input buffer at time 325 My favourite subject is 
+CH3 stopped Output Spooling added Output Buffer at time 325    *
+CH2 started popped output buffer at time 326    *
+CH1 started popped empty buffer at time 326 OS
+CH3 started popped input buffer started its operation on Input Spooling at time 326 My favourite subject is 
+CH3 stopped Input Spooling added Empty Buffer at time 327 My favourite subject is 
+CH2 stopped added empty buffer at time 327    *
+CH3 started popped empty buffer started its operation on Output Spooling at time 328   ***
+CH3 stopped Output Spooling added Output Buffer at time 329   ***
+CH2 started popped output buffer at time 330   ***
+CH1 ended added input buffer at time 330 OS
+CH3 started popped empty buffer started its operation on Output Spooling at time 330  *****
+CH2 stopped added empty buffer at time 331   ***
+CH1 started popped empty buffer at time 331 $END0001
+CH3 stopped Output Spooling added Output Buffer at time 331  *****
+CH3 started popped input buffer started its operation on Input Spooling at time 332 OS
+CH2 started popped output buffer at time 332  *****
+CH3 stopped Input Spooling added Empty Buffer at time 333 OS
+CH2 stopped added empty buffer at time 333  *****
+CH3 started popped empty buffer started its operation on Output Spooling at time 334 *******
+CH1 ended added input buffer at time 335 $END0001
+CH3 stopped Output Spooling added Output Buffer at time 335 *******
+CH2 started popped output buffer at time 336 *******
+CH1 started popped empty buffer at time 336 $AMJ00100080002
+CH3 started popped input buffer started its operation on Input Spooling at time 336 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 337 $END0001
+CH2 stopped added empty buffer at time 337 *******
+CH3 started popped empty buffer started its operation on Output Spooling at time 338  *****
+CH3 stopped Output Spooling added Output Buffer at time 339  *****
+CH2 started popped output buffer at time 340  *****
+CH1 ended added input buffer at time 340 $AMJ00100080002
+CH3 started popped empty buffer started its operation on Output Spooling at time 340   ***
+CH2 stopped added empty buffer at time 341  *****
+CH1 started popped empty buffer at time 341 GD10GD20LR20SR16PD10H
+CH3 stopped Output Spooling added Output Buffer at time 341   ***
+CH3 started popped input buffer started its operation on Input Spooling at time 342 $AMJ00100080002
+CH2 started popped output buffer at time 342   ***
+CH3 stopped Input Spooling added Empty Buffer at time 343 $AMJ00100080002
+PCB created
+CH2 stopped added empty buffer at time 343   ***
+CH3 started popped empty buffer started its operation on Output Spooling at time 344    *
+CH1 ended added input buffer at time 345 GD10GD20LR20SR16PD10H
+CH3 stopped Output Spooling added Output Buffer at time 345    *
+CH2 started popped output buffer at time 346    *
+CH1 started popped empty buffer at time 346 $DTA
+CH3 started popped input buffer started its operation on Input Spooling at time 346 GD10GD20LR20SR16PD10H000
+CH3 stopped Input Spooling added Empty Buffer at time 347 GD10GD20LR20SR16PD10H000
+CH2 stopped added empty buffer at time 347    *
+CH3 started popped empty buffer started its operation on Output Spooling at time 348 No Error
+CH3 stopped Output Spooling added Output Buffer at time 349 No Error
+CH2 started popped output buffer at time 350 No Error
+CH1 ended added input buffer at time 350 $DTA
+CH3 started popped empty buffer started its operation on Output Spooling at time 350 IR H000 IC 32
+
+ 
+CH2 stopped added empty buffer at time 351 No Error
+CH1 started popped empty buffer at time 351 My favourite subject is 
+CH3 stopped Output Spooling added Output Buffer at time 351 IR H000 IC 32
+
+ 
+CH3 started popped input buffer started its operation on Input Spooling at time 352 $DTA
+CH2 started popped output buffer at time 352 IR H000 IC 32
+
+ 
+CH3 stopped Input Spooling added Empty Buffer at time 353 $DTA
+CH2 stopped added empty buffer at time 353 IR H000 IC 32
+
+ 
+CH1 ended added input buffer at time 355 My favourite subject is 
+CH3 started loading memory at time 355 GD20PD20LR20SR30SR31PD30SR40SR41SR42PD40
+CH1 started popped empty buffer at time 356 OS
+CH3 stopped loading memory at time 356
+CH3 started popped input buffer started its operation on Input Spooling at time 357 My favourite subject is 
+CH3 stopped Input Spooling added Empty Buffer at time 358 My favourite subject is 
+CH3 started loading memory at time 359 SR50SR51PD50SR60PD60H000
+CH1 ended added input buffer at time 360 OS
+CH3 stopped loading memory at time 360
+Execution starts at time 360
+CH1 started popped empty buffer at time 361 $END0001
+CH3 started popped input buffer started its operation on Input Spooling at time 361 OS
+CH3 stopped Input Spooling added Empty Buffer at time 362 OS
+CH3 started I/O Read Operation using channel 3 at timer 363 *
+I_OQueue operation completed at time 364
+CH1 ended added input buffer at time 365 $END0001
+CH3 started I/O Write Operation using channel 3 at timer 365 *
+CH1 started popped empty buffer at time 366 CH1Stop 1
+I_OQueue operation completed at time 366
+CH3 started popped input buffer started its operation on Input Spooling at time 367 $END0001
+CH3 stopped Input Spooling added Empty Buffer at time 368 $END0001
+CH3 started I/O Write Operation using channel 3 at timer 371 **
+I_OQueue operation completed at time 372
+CH3 started I/O Write Operation using channel 3 at timer 378 ***
+I_OQueue operation completed at time 379
+CH3 started I/O Write Operation using channel 3 at timer 383 **
+I_OQueue operation completed at time 384
+CH3 started I/O Write Operation using channel 3 at timer 386 *
+I_OQueue operation completed at time 387
+CH3 started terminate Operation using channel 3 at timer 387 No Error
+Data IR H000 IC 15
+
+ 
+Execution ends at time 387
+CH3 started popped empty buffer started its operation on Output Spooling at time 388 *
+CH3 stopped Output Spooling added Output Buffer at time 389 *
+CH3 started popped empty buffer started its operation on Output Spooling at time 390 **
+CH2 started popped output buffer at time 390 *
+CH3 stopped Output Spooling added Output Buffer at time 391 **
+CH2 stopped added empty buffer at time 391 *
+CH3 started popped empty buffer started its operation on Output Spooling at time 392 ***
+CH2 started popped output buffer at time 392 **
+CH3 stopped Output Spooling added Output Buffer at time 393 ***
+CH2 stopped added empty buffer at time 393 **
+CH3 started popped empty buffer started its operation on Output Spooling at time 394 **
+CH2 started popped output buffer at time 394 ***
+CH3 stopped Output Spooling added Output Buffer at time 395 **
+CH2 stopped added empty buffer at time 395 ***
+CH3 started popped empty buffer started its operation on Output Spooling at time 396 *
+CH2 started popped output buffer at time 396 **
+CH3 stopped Output Spooling added Output Buffer at time 397 *
+CH2 stopped added empty buffer at time 397 **
+CH3 started popped empty buffer started its operation on Output Spooling at time 398 No Error
+CH2 started popped output buffer at time 398 *
+CH3 stopped Output Spooling added Output Buffer at time 399 No Error
+CH2 stopped added empty buffer at time 399 *
+CH3 started popped empty buffer started its operation on Output Spooling at time 400 IR H000 IC 15
+
+ 
+CH2 started popped output buffer at time 400 No Error
+CH3 stopped Output Spooling added Output Buffer at time 401 IR H000 IC 15
+
+ 
+CH2 stopped added empty buffer at time 401 No Error
+CH2 started popped output buffer at time 402 IR H000 IC 15
+
+ 
+CH3 started loading memory at time 403 GD90GD80LR80SR81SR82SR83SR50SR51SR52SR53
+CH2 stopped added empty buffer at time 403 IR H000 IC 15
+
+ 
+CH3 stopped loading memory at time 404
+CH3 started loading memory at time 405 SR60SR63SR70SR73LR90SR61SR62SR71SR72PD50
+CH3 stopped loading memory at time 406
+CH3 started loading memory at time 407 PD60PD70PD80H000
+CH3 stopped loading memory at time 408
+Execution starts at time 408
+CH3 started I/O Read Operation using channel 3 at timer 409  
+I_OQueue operation completed at time 410
+CH3 started I/O Read Operation using channel 3 at timer 411 *
+I_OQueue operation completed at time 412
+CH3 started I/O Write Operation using channel 3 at timer 445 ****
+I_OQueue operation completed at time 446
+CH3 started I/O Write Operation using channel 3 at timer 447 *  *
+I_OQueue operation completed at time 448
+CH3 started I/O Write Operation using channel 3 at timer 449 *  *
+I_OQueue operation completed at time 450
+CH3 started I/O Write Operation using channel 3 at timer 451 ****
+I_OQueue operation completed at time 452
+CH3 started terminate Operation using channel 3 at timer 452 No Error
+Data IR H000 IC 23
+
+ 
+Execution ends at time 452
+CH3 started popped empty buffer started its operation on Output Spooling at time 453 ****
+CH3 stopped Output Spooling added Output Buffer at time 454 ****
+CH3 started popped empty buffer started its operation on Output Spooling at time 455 *  *
+CH2 started popped output buffer at time 455 ****
+CH3 stopped Output Spooling added Output Buffer at time 456 *  *
+CH2 stopped added empty buffer at time 456 ****
+CH3 started popped empty buffer started its operation on Output Spooling at time 457 *  *
+CH2 started popped output buffer at time 457 *  *
+CH3 stopped Output Spooling added Output Buffer at time 458 *  *
+CH2 stopped added empty buffer at time 458 *  *
+CH3 started popped empty buffer started its operation on Output Spooling at time 459 ****
+CH2 started popped output buffer at time 459 *  *
+CH3 stopped Output Spooling added Output Buffer at time 460 ****
+CH2 stopped added empty buffer at time 460 *  *
+CH3 started popped empty buffer started its operation on Output Spooling at time 461 No Error
+CH2 started popped output buffer at time 461 ****
+CH3 stopped Output Spooling added Output Buffer at time 462 No Error
+CH2 stopped added empty buffer at time 462 ****
+CH3 started popped empty buffer started its operation on Output Spooling at time 463 IR H000 IC 23
+
+ 
+CH2 started popped output buffer at time 463 No Error
+CH3 stopped Output Spooling added Output Buffer at time 464 IR H000 IC 23
+
+ 
+CH2 stopped added empty buffer at time 464 No Error
+CH2 started popped output buffer at time 465 IR H000 IC 23
+
+ 
+CH3 started loading memory at time 466 GD10GD20LR20SR16PD10H000
+CH2 stopped added empty buffer at time 466 IR H000 IC 23
+
+ 
+CH3 stopped loading memory at time 467
+Execution starts at time 467
+CH3 started I/O Read Operation using channel 3 at timer 468 My favourite subject is 
+I_OQueue operation completed at time 469
+CH3 started I/O Read Operation using channel 3 at timer 470 OS
+I_OQueue operation completed at time 471
+CH3 started terminate Operation using channel 3 at timer 475 Line Limit Exceeded
+Data IR PD10 IC 04
+
+ 
+Execution ends at time 475
+CH3 started popped empty buffer started its operation on Output Spooling at time 476 Line Limit Exceeded
+CH3 stopped Output Spooling added Output Buffer at time 477 Line Limit Exceeded
+CH3 started popped empty buffer started its operation on Output Spooling at time 478 IR PD10 IC 04
+
+ 
+CH2 started popped output buffer at time 478 Line Limit Exceeded
+CH3 stopped Output Spooling added Output Buffer at time 479 IR PD10 IC 04
+
+ 
+CH2 stopped added empty buffer at time 479 Line Limit Exceeded
+CH2 started popped output buffer at time 480 IR PD10 IC 04
+
+ 
+CH3 started loading memory at time 481 GD10GD20LR20SR16PD10H000
+CH2 stopped added empty buffer at time 481 IR PD10 IC 04
+
+ 
+CH3 stopped loading memory at time 482
+Execution starts at time 482
+CH3 started I/O Read Operation using channel 3 at timer 483 My favourite subject is 
+I_OQueue operation completed at time 484
+CH3 started I/O Read Operation using channel 3 at timer 485 OS
+I_OQueue operation completed at time 486
+CH3 started I/O Write Operation using channel 3 at timer 490 My favourite subject is OS
+I_OQueue operation completed at time 491
+CH3 started terminate Operation using channel 3 at timer 491 No Error
+Data IR H000 IC 05
+
+ 
+Execution ends at time 491
+CH3 started popped empty buffer started its operation on Output Spooling at time 492 My favourite subject is OS
+CH3 stopped Output Spooling added Output Buffer at time 493 My favourite subject is OS
+CH3 started popped empty buffer started its operation on Output Spooling at time 494 No Error
+CH2 started popped output buffer at time 494 My favourite subject is OS
+CH3 stopped Output Spooling added Output Buffer at time 495 No Error
+CH2 stopped added empty buffer at time 495 My favourite subject is OS
+CH3 started popped empty buffer started its operation on Output Spooling at time 496 IR H000 IC 05
+
+ 
+CH2 started popped output buffer at time 496 No Error
+CH3 stopped Output Spooling added Output Buffer at time 497 IR H000 IC 05
+
+ 
+CH2 stopped added empty buffer at time 497 No Error
+CH2 started popped output buffer at time 498 IR H000 IC 05
+
+ 
+CH2 stopped added empty buffer at time 499 IR H000 IC 05
+
+ 

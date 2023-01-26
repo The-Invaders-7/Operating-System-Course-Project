@@ -1,0 +1,118 @@
+Invalid Page Fault
+IR PD20 IC 01
+
+ 
+Out of Data
+IR GD60 IC 04
+
+ 
+SAME
+No Error
+IR H000 IC 10
+
+ 
+*
+Time Limit Exceeded
+IR PD40 IC 05
+
+ 
+Operation Code Error
+IR GH00 IC 01
+
+ 
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+No Error
+IR H000 IC 32
+
+ 
+*
+**
+***
+**
+*
+No Error
+IR H000 IC 15
+
+ 
+****
+*  *
+*  *
+****
+No Error
+IR H000 IC 23
+
+ 
+Line Limit Exceeded
+IR PD10 IC 04
+
+ 
+My favourite subject is OS
+No Error
+IR H000 IC 05
+
+ 
+Invalid Page Fault
+IR PD20 IC 01
+
+ 
+Out of Data
+IR GD60 IC 04
+
+ 
+SAME
+No Error
+IR H000 IC 10
+
+ 
+*
+Time Limit Exceeded
+IR PD40 IC 05
+
+ 
+Operation Code Error
+IR GH00 IC 01
+
+ 
+   *
+  ***
+ *****
+*******
+ *****
+  ***
+   *
+No Error
+IR H000 IC 32
+
+ 
+*
+**
+***
+**
+*
+No Error
+IR H000 IC 15
+
+ 
+****
+*  *
+*  *
+****
+No Error
+IR H000 IC 23
+
+ 
+Line Limit Exceeded
+IR PD10 IC 04
+
+ 
+My favourite subject is OS
+No Error
+IR H000 IC 05
+
+ 
